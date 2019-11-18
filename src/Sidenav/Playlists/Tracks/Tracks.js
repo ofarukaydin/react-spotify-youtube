@@ -17,6 +17,7 @@ const Tracks = (props) => {
                     const artistList = trackElement.track.artists.map((artistElement) => {
                         return artistElement.name
                     })
+                    
                     return {
                         title: trackElement.track.name,
                         artists: artistList.join(", "),
@@ -28,7 +29,7 @@ const Tracks = (props) => {
                 setTracks(tracksList)
             })()
 
-        }, [Tracks, params.playlistId])
+        }, [params.playlistId])
 
 
 

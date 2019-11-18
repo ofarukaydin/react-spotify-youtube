@@ -11,8 +11,8 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <Route path={"/playlists/:playlistId"} exact render={() => <Tracks/>}/> 
-      <Route path="/" exact component={Sidenav} ></Route>
+        <Route path={"/playlists/:playlistId"} exact component={Tracks}/> 
+        <Route path="/" component={Sidenav} ></Route>
     </BrowserRouter>
   );
 }
