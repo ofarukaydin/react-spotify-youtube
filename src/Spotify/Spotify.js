@@ -155,7 +155,7 @@ const Spotify = {
     return jsonResponse;
   },
 
-  async getTracks()
+  async getTracks(id)
   {
     const token = this.getAccessToken();
     const userId = await this.getUserId(token);
@@ -163,8 +163,7 @@ const Spotify = {
       Authorization: `Bearer ${token}`,
       'content-type': 'application/json'
     };
-    let playlistID = '';
-    const response = await fetch(`https://api.spotify.com/v1/users/${userId}/playlists`,
+    const response = await fetch(`https://api.spotify.com/v1/users/${userId}/playlists/${id}/tracks`,
                         {
                           headers : headers,
                           method: 'GET'

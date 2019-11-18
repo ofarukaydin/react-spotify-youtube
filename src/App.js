@@ -1,6 +1,8 @@
-import React, {useState, useEffect} from 'react';
 import './App.css';
-import Playlists from "./Playlists/Playlists"
+import Sidenav from "./Sidenav/Sidenav"
+import React from "react"
+import { BrowserRouter, Route } from "react-router-dom"
+import Tracks from "./Sidenav/Playlists/Tracks/Tracks"
 
 const App = () => {
 
@@ -8,9 +10,10 @@ const App = () => {
 
 
   return (
-    <div className="App">
-      <Playlists />
-    </div>
+    <BrowserRouter>
+      <Route path={"/playlists/:playlistId"} exact render={() => <Tracks/>}/> 
+      <Route path="/" exact component={Sidenav} ></Route>
+    </BrowserRouter>
   );
 }
 

@@ -1,10 +1,13 @@
 import React from "react"
+import {Link} from "react-router-dom"
+
 
 const Playlist = props => {
     return (
     <>
-        {/* <li>{props.id}</li> */}
-        <li>{props.name}</li>
+               
+        <Link to={"/playlists/" + props.id}>{props.name}</Link>
+
     </>    
     )
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import Playlist from "./Playlist/Playlist"
-import Spotify from "../Spotify/Spotify"
+import Spotify from "../../Spotify/Spotify"
 
 
 const Playlists = (props) => {
@@ -27,12 +27,15 @@ const Playlists = (props) => {
     let playlistElement = Playlists.map(
         (playlist) => {
             return (
-                <Playlist key={playlist.id} name={playlist.name} id={playlist.id} />
+            <>
+               <Playlist key={playlist.id} name={playlist.name} id={playlist.id} />
+            </>    
             )
         }
     )
 
     return playlistElement
+
 
 } 
 
