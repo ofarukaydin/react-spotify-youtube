@@ -44,7 +44,6 @@ const Tracks = (props) => {
                     <th>Title</th>
                     <th>Artist</th>
                     <th>Album</th>
-                    <th>Added At</th>
                     <th>Duration</th>
                 </tr>
             </tbody>

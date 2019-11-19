@@ -3,8 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.25",
+    "@fortawesome/free-regular-svg-icons": "^5.11.2",
+    "@fortawesome/free-solid-svg-icons": "^5.11.2",
+    "@fortawesome/react-fontawesome": "^0.1.7",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
+    "react-hot-loader": "^4.12.18",
     "react-jinke-music-player": "^4.6.0",
     "react-media-player": "^0.7.9",
     "react-player": "^1.14.1",
