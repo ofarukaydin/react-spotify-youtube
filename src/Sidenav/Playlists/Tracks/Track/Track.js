@@ -1,6 +1,9 @@
 import React, {useEffect, useState} from "react"
 import { connect } from "react-redux"
 import * as actionTypes from "../../../../store/actions"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlayCircle } from '@fortawesome/free-regular-svg-icons'
+
 
 const Track = (props) => {
 
@@ -15,11 +18,12 @@ const Track = (props) => {
 
         
         
-    }, [stateUrl])
+    }, [stateUrl, props.artists, props.title])
 
     return (
-        <tbody onClick={() => props.onSetTrack(stateUrl)}>
-            <tr>              
+        <tbody>
+            <tr>
+                <td><FontAwesomeIcon onClick={() => props.onSetTrack(stateUrl)} style={{ fontSize: "15px", color: "grey" }} icon={faPlayCircle} /></td>              
                 <td>{props.title}</td>
                 <td>{props.artists}</td>
                 <td>{props.album}</td>

@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom"
 import Track from "./Track/Track"
 import styles from "./Tracks.module.css"
 
-
 const Tracks = (props) => {
 
     const [Tracks, setTracks] = useState([])
@@ -41,6 +40,7 @@ const Tracks = (props) => {
         <table className={styles.Tracklist}>
             <tbody>
                 <tr>
+                    <th></th>
                     <th>Title</th>
                     <th>Artist</th>
                     <th>Album</th>

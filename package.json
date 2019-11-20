@@ -10,8 +10,6 @@
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-hot-loader": "^4.12.18",
-    "react-jinke-music-player": "^4.6.0",
-    "react-media-player": "^0.7.9",
     "react-player": "^1.14.1",
     "react-redux": "^7.1.3",
     "react-router": "^5.1.2",
