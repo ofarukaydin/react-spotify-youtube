@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from "react"
+import { connect } from "react-redux"
+import * as actionTypes from "../../../../store/actions"
 
 const Track = (props) => {
 
@@ -16,7 +18,7 @@ const Track = (props) => {
     }, [stateUrl])
 
     return (
-        <tbody>
+        <tbody onClick={() => props.onSetTrack(stateUrl)}>
             <tr>              
                 <td>{props.title}</td>
                 <td>{props.artists}</td>
@@ -27,4 +29,13 @@ const Track = (props) => {
     )
 }
 
-export default Track
+
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onSetTrack: (trackUrl) => dispatch({ type: actionTypes.SET_TRACK, url: trackUrl }),     
+    }
+}
+
+
+export default connect(null, mapDispatchToProps)(Track)
