@@ -1,45 +1,53 @@
-import React, {useEffect, useState} from "react"
-import { connect } from "react-redux"
-import * as actionTypes from "../../../../store/actions"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlayCircle } from '@fortawesome/free-regular-svg-icons'
+import React from "react";
+import { connect } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPlayCircle,
+  faPauseCircle
+} from "@fortawesome/free-regular-svg-icons";
+import * as actions from "../../../../store/actions/player";
+import { setCurrentTrack } from "../../../../store/actions/tracks";
+
+const Track = props => {
 
 
-const Track = (props) => {
+  const handleClick = () => {
+    props.getUrl(props.artists, props.title);
+    props.setCurrentTrack(props.track);
+  };
 
-    const [stateUrl, setUrl] = useState("")
-
-    useEffect(() => {
-        (async () => {
-            const response = await fetch("http://www.farukaydin.xyz/search?q=" + props.artists + " " + props.title)
-            const jsonResponse = await response.json();
-            setUrl(jsonResponse.url)
-        })()
-
-        
-        
-    }, [stateUrl, props.artists, props.title])
-
-    return (
-        <tbody>
-            <tr>
-                <td><FontAwesomeIcon onClick={() => props.onSetTrack(stateUrl)} style={{ fontSize: "15px", color: "grey" }} icon={faPlayCircle} /></td>              
-                <td>{props.title}</td>
-                <td>{props.artists}</td>
-                <td>{props.album}</td>
-                <td>{props.duration}</td>
-            </tr>
-        </tbody>
-    )
-}
-
-
+  return (
+    <tbody style={props.player.playing && props.tracks.currentTrack.duration === props.duration ? { color: "green" } : { color: "grey" }}>
+      <tr>
+        <td>
+          <FontAwesomeIcon
+            onClick={handleClick}
+            icon={props.player.playing && props.tracks.currentTrack.duration === props.duration ? faPauseCircle : faPlayCircle}
+            spin={props.tracks.currentTrack.duration === props.duration ? props.player.loading : null}
+          />
+        </td>
+        <td onClick={handleClick}>{props.title}</td>
+        <td>{props.artists}</td>
+        <td>{props.album}</td>
+      </tr>
+    </tbody>
+  );
+};
 
 const mapDispatchToProps = dispatch => {
-    return {
-        onSetTrack: (trackUrl) => dispatch({ type: actionTypes.SET_TRACK, url: trackUrl }),     
-    }
-}
+  return {
+    setTrack: trackUrl => dispatch(actions.setTrack(trackUrl)),
+    pause: () => dispatch(actions.pause()),
+    getUrl: (artists, title) => dispatch(actions.getUrl(artists, title)),
+    setCurrentTrack: track => dispatch(setCurrentTrack(track))
+  };
+};
 
+const mapStateToProps = state => {
+  return {
+    player: state.player,
+    tracks: state.tracks
+  };
+};
 
-export default connect(null, mapDispatchToProps)(Track)
+export default connect(mapStateToProps, mapDispatchToProps)(Track);

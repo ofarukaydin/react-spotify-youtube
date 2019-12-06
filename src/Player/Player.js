@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStepBackward, faStepForward, faVolumeUp, faVolumeMute } from '@fortawesome/free-solid-svg-icons'
 import { faPlayCircle, faPauseCircle } from '@fortawesome/free-regular-svg-icons'
 import { connect } from "react-redux"
-import * as actionTypes from "../store/actions"
+import * as actions from "../store/actions/player"
 
 
 class Player extends Component {
@@ -22,7 +22,6 @@ class Player extends Component {
     }
 
     handleProgress = state => {
-        console.log('onDuration', this.state)
         // We only want to update time slider if we are not currently seeking
         if (!this.props.player.seeking) {
             this.props.onHandleProgress(state)
@@ -34,7 +33,7 @@ class Player extends Component {
     }
 
     render() {
-        const { url, playing, controls, light, volume, muted, loop, played, playbackRate, pip, duration } = this.props.player
+        const { url, playing, controls, light, volume, muted, loop, played, playbackRate, pip, duration, loading } = this.props.player
 
         return (
             <div className={styles.playercontainer}>
@@ -69,7 +68,7 @@ class Player extends Component {
                 <div className={styles.playermid}>
                     <div className={styles.playbuttons}>
                         <FontAwesomeIcon style={{ margin: "10px" }} icon={faStepBackward} />
-                        <FontAwesomeIcon onClick={this.props.onPlayPause} style={{ fontSize: "40px" }} icon={playing ? faPauseCircle : faPlayCircle} />
+                        <FontAwesomeIcon onClick={this.props.onPlayPause} style={{ fontSize: "40px" }} icon={playing ? faPauseCircle : faPlayCircle} spin={loading}/>
                         <FontAwesomeIcon style={{ margin: "10px" }} icon={faStepForward} />
                     </div>
                     <div className={styles.playermidcontainer}>
@@ -109,19 +108,19 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onSetTrack: (trackUrl) => dispatch({ type: actionTypes.SET_TRACK, url: trackUrl }),
-        onPlayPause: () => dispatch({ type: actionTypes.PLAY_PAUSE }),
-        onToggleLoop: () => dispatch({ type: actionTypes.TOGGLE_LOOP }),
-        onVolumeChange: (value) => dispatch({ type: actionTypes.VOLUME_CHANGE, value: value }),
-        onToggleMuted: () => dispatch({ type: actionTypes.TOGGLE_MUTED }),
-        onPlay: () => dispatch({ type: actionTypes.PLAY }),
-        onPause: () => dispatch({ type: actionTypes.PAUSE }),
-        onSeekMouseDown: () => dispatch({ type: actionTypes.SEEK_MOUSE_DOWN }),
-        onSeekChange: (value) => dispatch({ type: actionTypes.SEEK_CHANGE, value: value }),
-        onSeekMouseUp: () => dispatch({ type: actionTypes.SEEK_MOUSE_UP }),
-        onHandleProgress: (value) => dispatch({ type: actionTypes.HANDLE_PROGRESS, value }),
-        onHandleEnded: () => dispatch({ type: actionTypes.HANDLE_ENDED }),
-        onHandleDuration: (value) => dispatch({ type: actionTypes.HANDLE_DURATION, value }),
+        onSetTrack: (url) => dispatch(actions.setTrack(url)),
+        onPlayPause: () => dispatch(actions.playPause()),
+        onToggleLoop: () => dispatch(actions.toggleLoop()),
+        onVolumeChange: (value) => dispatch(actions.volumeChange(value)),
+        onToggleMuted: () => dispatch(actions.toggleMuted()),
+        onPlay: () => dispatch(actions.play()),
+        onPause: () => dispatch(actions.pause()),
+        onSeekMouseDown: () => dispatch(actions.seekMouseDown()),
+        onSeekChange: (value) => dispatch(actions.seekChange(value)),
+        onSeekMouseUp: () => dispatch(actions.seekMouseUp()),
+        onHandleProgress: (value) => dispatch(actions.handleProgress(value)),
+        onHandleEnded: () => dispatch(actions.handleEnded()),
+        onHandleDuration: (value) => dispatch(actions.handleDuration(value)),
         
     }
 }

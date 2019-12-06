@@ -3,13 +3,22 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { createStore } from 'redux';
+import { createStore, compose, applyMiddleware, combineReducers } from "redux";
+import thunk from "redux-thunk";
 import { Provider } from 'react-redux';
-import reducer from './store/reducer';
+import playerReducer from './store/reducers/player';
+import tracksReducer from "./store/reducers/tracks"
 import { BrowserRouter } from "react-router-dom"
 
 
-const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+const composeEnhances = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const rootReducer = combineReducers({
+    player: playerReducer,
+    tracks: tracksReducer
+  });
+
+const store = createStore(rootReducer, composeEnhances(applyMiddleware(thunk)));
 
 ReactDOM.render(
     <Provider store={store}>
