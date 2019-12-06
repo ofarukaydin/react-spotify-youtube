@@ -90,7 +90,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.HANDLE_ENDED:
       return {
         ...state,
-        playing: state.player.loop
+        playing: state.loop
       };
     case actionTypes.HANDLE_DURATION:
       return {

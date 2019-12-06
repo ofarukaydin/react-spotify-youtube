@@ -9,6 +9,7 @@ const Spotify = {
   // Get the access token using authorize API from Sportify.
   getAccessToken()
   {
+    const scopes = "ugc-image-upload user-read-playback-state streaming user-read-email playlist-read-collaborative user-modify-playback-state user-read-private playlist-modify-public user-library-modify user-top-read user-read-currently-playing playlist-read-private user-follow-read app-remote-control user-read-recently-played playlist-modify-private user-follow-modify user-library-read"
     if(spotifyAccesToken)
     {
       return spotifyAccesToken;
@@ -25,7 +26,7 @@ const Spotify = {
     }
     else
     {
-      window.location = `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=playlist-modify-public&response_type=token`;
+      window.location = `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${encodeURIComponent(scopes)}&response_type=token`;
     }
   },
 
@@ -174,6 +175,59 @@ const Spotify = {
     return jsonResponse;
   },
 
+  async getCategories()
+  {
+    const token = this.getAccessToken();
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      'content-type': 'application/json'
+    };
+    const response = await fetch(`https://api.spotify.com/v1/browse/categories`,
+                        {
+                          headers : headers,
+                          method: 'GET'
+                        }
+                      );
+    const jsonResponse = await response.json();
+
+    return jsonResponse;
+  },
+
+  async getCategoryPlaylists(id)
+  {
+    const token = this.getAccessToken();
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      'content-type': 'application/json'
+    };
+    const response = await fetch(`https://api.spotify.com/v1/browse/categories/${id}/playlists`,
+                        {
+                          headers : headers,
+                          method: 'GET'
+                        }
+                      );
+    const jsonResponse = await response.json();
+
+    return jsonResponse;
+  },
+
+  async getFeaturedPlaylists()
+  {
+    const token = this.getAccessToken();
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      'content-type': 'application/json'
+    };
+    const response = await fetch(`https://api.spotify.com/v1/browse/featured-playlists`,
+                        {
+                          headers : headers,
+                          method: 'GET'
+                        }
+                      );
+    const jsonResponse = await response.json();
+
+    return jsonResponse;
+  },
 
 // Add tracks to an existing playlist.
   async addTracks(token, userId, playlistID, trackURIs)

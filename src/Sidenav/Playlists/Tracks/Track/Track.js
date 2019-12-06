@@ -17,11 +17,12 @@ const Track = props => {
   };
 
   return (
-    <tbody style={props.player.playing && props.tracks.currentTrack.duration === props.duration ? { color: "green" } : { color: "grey" }}>
+    <tbody style={!props.player.loading && props.player.playing && props.tracks.currentTrack.duration === props.duration ? { color: "green" } : { color: "grey" }}>
       <tr>
         <td>
           <FontAwesomeIcon
             onClick={handleClick}
+            style={{fontSize: "20px"}}
             icon={props.player.playing && props.tracks.currentTrack.duration === props.duration ? faPauseCircle : faPlayCircle}
             spin={props.tracks.currentTrack.duration === props.duration ? props.player.loading : null}
           />

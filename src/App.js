@@ -1,23 +1,24 @@
-import './App.css';
-import Sidenav from "./Sidenav/Sidenav"
-import React from "react"
-import { Route } from "react-router-dom"
-import Tracks from "./Sidenav/Playlists/Tracks/Tracks"
-import Player from "./Player/Player"
-import styles from "./App.css"
+import React from "react";
+import { BrowserRouter, Route } from "react-router-dom";
+import Tracks from "./Sidenav/Playlists/Tracks/Tracks";
+import Categories from "./Categories/Categories.js";
+import Layout from "./Layout/Layout";
+import Home from "./Home";
+import CategoryPlaylists from "./CategoryPlaylists/CategoryPlaylist"
+import FeaturedPlaylists from "./FeaturedPlaylists/FeaturedPlaylists"
 
-const App = () => {
-
-
-
-
+const App = props => {
   return (
-    <div className={styles.App}>
-        <Route path={"/playlists/:playlistId"} exact component={Tracks}/> 
-        <Route path="/" component={Sidenav} />
-    <Player />
-    </div>
+    <BrowserRouter>
+      <Layout {...props}>
+        <Route exact path="/categories" component={Categories} />
+        <Route exact path="/featured" component={FeaturedPlaylists} />
+        <Route exact path="/categories/:categoryId" component={CategoryPlaylists} />
+        <Route exact path={"/playlists/:playlistId"} component={Tracks} />
+        <Route exact path="/" component={Home} />
+      </Layout>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;

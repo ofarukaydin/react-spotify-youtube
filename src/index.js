@@ -1,31 +1,29 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import * as serviceWorker from "./serviceWorker";
 import { createStore, compose, applyMiddleware, combineReducers } from "redux";
 import thunk from "redux-thunk";
-import { Provider } from 'react-redux';
-import playerReducer from './store/reducers/player';
-import tracksReducer from "./store/reducers/tracks"
-import { BrowserRouter } from "react-router-dom"
-
+import { Provider } from "react-redux";
+import playerReducer from "./store/reducers/player";
+import tracksReducer from "./store/reducers/tracks";
+import { BrowserRouter } from "react-router-dom";
 
 const composeEnhances = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
-    player: playerReducer,
-    tracks: tracksReducer
-  });
+  player: playerReducer,
+  tracks: tracksReducer
+});
 
 const store = createStore(rootReducer, composeEnhances(applyMiddleware(thunk)));
 
 ReactDOM.render(
-    <Provider store={store}>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
-    </Provider>, document.getElementById('root')
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change
