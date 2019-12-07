@@ -15,7 +15,7 @@ const GridHomePage = styled(Grid)`
 
 const Layout = props => {
   return (
-    <>
+    <div className="grid-container">
       <Sidenav />
       <Player />
 
@@ -26,7 +26,7 @@ const Layout = props => {
           </GridHomePage>
         </Grid>
 
-    </>
+    </div>
   );
 };
 
