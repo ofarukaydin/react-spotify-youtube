@@ -12,8 +12,14 @@ const Track = props => {
 
 
   const handleClick = () => {
-    props.getUrl(props.artists, props.title);
-    props.setCurrentTrack(props.track);
+    if (props.tracks.currentTrack.duration === props.duration){
+      props.playPause()
+    }
+    else {
+      props.getUrl(props.artists, props.title);
+      props.setCurrentTrack(props.track);
+    }
+
   };
 
   return (
@@ -37,7 +43,8 @@ const mapDispatchToProps = dispatch => {
     setTrack: trackUrl => dispatch(actions.setTrack(trackUrl)),
     pause: () => dispatch(actions.pause()),
     getUrl: (artists, title) => dispatch(actions.getUrl(artists, title)),
-    setCurrentTrack: track => dispatch(setCurrentTrack(track))
+    setCurrentTrack: track => dispatch(setCurrentTrack(track)),
+    playPause: () => dispatch(actions.playPause())
   };
 };
 
