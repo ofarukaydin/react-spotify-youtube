@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { hot } from 'react-hot-loader'
 import ReactPlayer from "react-player"
 import Duration from './Duration'
-import styles from "./Player.module.css"
+import "./Player.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStepBackward, faStepForward, faVolumeUp, faVolumeMute } from '@fortawesome/free-solid-svg-icons'
 import { faPlayCircle, faPauseCircle } from '@fortawesome/free-regular-svg-icons'
@@ -36,12 +36,11 @@ class Player extends Component {
         const { url, playing, controls, light, volume, muted, loop, played, playbackRate, pip, duration, loading } = this.props.player
 
         return (
-            <div className={styles.playercontainer}>
+            <div className="playercontainer player">
                 <ReactPlayer
                     ref={this.ref}
-                    className={styles.reactplayer}
                     width='200px'
-                    height='100px'
+                    height='90px'
                     url={url}
                     pip={pip}
                     playing={playing}
@@ -65,16 +64,16 @@ class Player extends Component {
                     onDuration={(duration) => this.props.onHandleDuration({duration})}
                 />
 
-                <div className={styles.playermid}>
-                    <div className={styles.playbuttons}>
+                <div className="playermid">
+                    <div>
                         <FontAwesomeIcon style={{ margin: "10px" }} icon={faStepBackward} />
                         <FontAwesomeIcon onClick={this.props.onPlayPause} style={{ fontSize: "40px" }} icon={playing ? faPauseCircle : faPlayCircle} spin={loading}/>
                         <FontAwesomeIcon style={{ margin: "10px" }} icon={faStepForward} />
                     </div>
-                    <div className={styles.playermidcontainer}>
+                    <div className="playermidcontainer">
                         <Duration seconds={duration * played} />
-                        <div style={{ margin: "0 10px 0 10px" }} className={styles.slidecontainer}>
-                            <input className={styles.slider}
+                        <div style={{ margin: "0 10px 0 10px" }}>
+                            <input className="slider"
                                 type='range' min={0} max={1} step='any'
                                 value={played}
                                 onMouseDown={this.props.onSeekMouseDown}
@@ -87,10 +86,10 @@ class Player extends Component {
 
                 </div>
 
-                <div className={styles.playerright}>
+                <div className="playerright">
                     <FontAwesomeIcon style={{ margin: "5px" }} icon={muted ? faVolumeMute : faVolumeUp} onClick={this.props.onToggleMuted} />
-                    <div style={{ marginRight: "15px" }} className={styles.slidercontainer}>
-                        <input className={styles.slider} type='range' min={0} max={1} step='any' value={volume} onChange={(e) => { this.props.onVolumeChange(parseFloat(e.target.value)) }} />
+                    <div style={{ marginRight: "15px" }}>
+                        <input className="slider" type='range' min={0} max={1} step='any' value={volume} onChange={(e) => { this.props.onVolumeChange(parseFloat(e.target.value)) }} />
                     </div>
                 </div>
             </div>

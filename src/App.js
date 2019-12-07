@@ -8,6 +8,7 @@ import CategoryPlaylists from "./CategoryPlaylists/CategoryPlaylist"
 import FeaturedPlaylists from "./FeaturedPlaylists/FeaturedPlaylists"
 import NewReleases from "./NewReleases/NewReleases"
 import Album from "./Album/Album.js"
+import CardTest from "./CardTest/CardTest"
 
 const App = props => {
   return (
@@ -16,6 +17,7 @@ const App = props => {
         <Route exact path="/categories" component={Categories} />
         <Route exact path="/featured" component={FeaturedPlaylists} />
         <Route exact path="/new" component={NewReleases} />
+        <Route exact path="/card" component={CardTest} />
         <Route exact path="/categories/:categoryId" component={CategoryPlaylists} />
         <Route exact path={"/playlists/:playlistId"} component={Tracks} />
         <Route exact path={"/albums/:albumId"} component={Album} />

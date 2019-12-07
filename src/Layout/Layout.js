@@ -2,8 +2,8 @@ import "./Layout.css";
 import Sidenav from "../Sidenav/Sidenav";
 import React from "react";
 import Player from "../Player/Player";
-import { withWidth, Grid } from '@material-ui/core';
-import styled from 'styled-components';
+import { withWidth, Grid } from "@material-ui/core";
+import styled from "styled-components";
 
 const GridHomePage = styled(Grid)`
   padding-bottom: 90px;
@@ -15,18 +15,11 @@ const GridHomePage = styled(Grid)`
 
 const Layout = props => {
   return (
-    <div className="grid-container">
+    <>
       <Sidenav />
       <Player />
-
-      
-        <Grid container>
-          <GridHomePage item lg={12}>
-            {props.children}
-          </GridHomePage>
-        </Grid>
-
-    </div>
+      <div className="content-container">{props.children}</div>
+    </>
   );
 };
 

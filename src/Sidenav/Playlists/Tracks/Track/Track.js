@@ -17,21 +17,18 @@ const Track = props => {
   };
 
   return (
-    <tbody style={!props.player.loading && props.player.playing && props.tracks.currentTrack.duration === props.duration ? { color: "green" } : { color: "grey" }}>
-      <tr>
-        <td>
+    <div className="tracks-container" style={!props.player.loading && props.player.playing && props.tracks.currentTrack.duration === props.duration ? { color: "green" } : { color: "white" }}>
+        <div className="tracks-play-icon">
           <FontAwesomeIcon
             onClick={handleClick}
-            style={{fontSize: "20px"}}
+            style={!props.player.loading && props.player.playing && props.tracks.currentTrack.duration === props.duration ? { color: "green" } : { color: "white" }}
             icon={props.player.playing && props.tracks.currentTrack.duration === props.duration ? faPauseCircle : faPlayCircle}
             spin={props.tracks.currentTrack.duration === props.duration ? props.player.loading : null}
           />
-        </td>
-        <td onClick={handleClick}>{props.title}</td>
-        <td>{props.artists}</td>
-        <td>{props.album}</td>
-      </tr>
-    </tbody>
+        </div>
+        <div className="tracks-title" style={!props.player.loading && props.player.playing && props.tracks.currentTrack.duration === props.duration ? { color: "green" } : { color: "white" }} onClick={handleClick}>{props.title}</div>
+        <div className="tracks-artists-album" style={{color: "grey"}}>{props.artists} • {props.album}</div>
+    </div>
   );
 };
 

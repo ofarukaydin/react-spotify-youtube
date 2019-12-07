@@ -1,3 +1,7 @@
 body {
   background-color: #121212;
 }
+.content-container {
+  margin-left: 175px;
+  margin-bottom: 100px;
+}

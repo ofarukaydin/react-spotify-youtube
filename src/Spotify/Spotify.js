@@ -265,6 +265,24 @@ const Spotify = {
     return jsonResponse;
   },
 
+  async getPlaylistDetails(id)
+  {
+    const token = this.getAccessToken();
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      'content-type': 'application/json'
+    };
+    const response = await fetch(`https://api.spotify.com/v1/playlists/${id}`,
+                        {
+                          headers : headers,
+                          method: 'GET'
+                        }
+                      );
+    const jsonResponse = await response.json();
+
+    return jsonResponse;
+  },
+
 // Add tracks to an existing playlist.
   async addTracks(token, userId, playlistID, trackURIs)
   {
