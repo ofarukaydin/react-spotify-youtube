@@ -16,4 +16,4 @@ As simple as searching track artist + track title and returning first result fro
 
 Google limits the api very hard for free usage. It's a workaround for it and i must say it works pretty well
 
-[Live Demo](https://farukaydin.xyz)
+[Live Demo](http://farukaydin.xyz)
