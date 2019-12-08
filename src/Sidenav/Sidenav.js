@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const Sidenav = props => {
   return (
     <div className="Sidenav">
-      <Link to="/browse">Browse</Link>
+      <Link to="/browse/categories">Browse</Link>
       <Playlists />
     </div>
   );

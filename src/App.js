@@ -9,6 +9,8 @@ import NewReleases from "./Browse/NewReleases/NewReleases";
 import FeaturedPlaylists from "./Browse/FeaturedPlaylists/FeaturedPlaylists";
 import Categories from "./Browse/Categories/Categories";
 import CategoryPlaylists from "./Browse/CategoryPlaylists/CategoryPlaylist";
+import Discover from "./Browse/Discover/Discover"
+import Artist from "./Artist/Artist"
 
 const App = props => {
   return (
@@ -18,6 +20,7 @@ const App = props => {
         <Route path="/browse/categories" component={Categories} />
         <Route path="/browse/featured" component={FeaturedPlaylists} />
         <Route path="/browse/new" component={NewReleases} />
+        <Route path="/browse/discover" component={Discover} />
         <Route
           exact
           path="/categories/:categoryId"
@@ -25,6 +28,7 @@ const App = props => {
         />
         <Route exact path={"/playlists/:playlistId"} component={Tracks} />
         <Route exact path={"/albums/:albumId"} component={Album} />
+        <Route exact path={"/artists/:artistId"} component={Artist} />
         <Route exact path="/" component={Home} />
       </Layout>
     </BrowserRouter>

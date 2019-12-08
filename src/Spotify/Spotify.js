@@ -301,6 +301,61 @@ const Spotify = {
     return jsonResponse;
   },
 
+  async getArtist(id)
+  {
+    const token = this.getAccessToken();
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      'content-type': 'application/json'
+    };
+    const response = await fetch(`https://api.spotify.com/v1/artists/${id}`,
+                        {
+                          headers : headers,
+                          method: 'GET'
+                        }
+                      );
+    const jsonResponse = await response.json();
+
+    return jsonResponse;
+  },
+
+  async getArtistsTopTracks(id)
+  {
+    const token = this.getAccessToken();
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      'content-type': 'application/json'
+    };
+    const response = await fetch(`https://api.spotify.com/v1/artists/${id}/top-tracks?country=US`,
+                        {
+                          headers : headers,
+                          method: 'GET'
+                        }
+                      );
+    const jsonResponse = await response.json();
+
+    return jsonResponse;
+  },
+
+  async getArtistsAlbums(id)
+  {
+    const token = this.getAccessToken();
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      'content-type': 'application/json'
+    };
+    const response = await fetch(`https://api.spotify.com/v1/artists/${id}/albums`,
+                        {
+                          headers : headers,
+                          method: 'GET'
+                        }
+                      );
+    const jsonResponse = await response.json();
+
+    return jsonResponse;
+  },
+
+
 // Add tracks to an existing playlist.
   async addTracks(token, userId, playlistID, trackURIs)
   {

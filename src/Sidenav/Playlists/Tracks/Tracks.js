@@ -43,7 +43,6 @@ const Tracks = props => {
 
   
   }, [params.playlistId]);
-  console.log(getPlaylistTracks)
   let keyIndex = 0;
   const trackElements = getPlaylistTracks.map(track => (
     <Track
