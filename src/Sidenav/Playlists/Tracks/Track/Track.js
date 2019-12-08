@@ -7,20 +7,30 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 import * as actions from "../../../../store/actions/player";
 import { setCurrentTrack } from "../../../../store/actions/tracks";
+import {Link} from "react-router-dom"
 
 const Track = props => {
 
+  const artistList = props.artists.map((artist, index) => {
+    return (
+      <Link to={`/artists/${artist.id}`}>{artist.name}{ props.artists.length - 1 === index ? '' : ', '}</Link>
+    )
+  })
+
+  const artistNames = props.artists.map((artist) => artist.name).join(", ")
 
   const handleClick = () => {
     if (props.tracks.currentTrack.duration === props.duration){
       props.playPause()
     }
     else {
-      props.getUrl(props.artists, props.title);
+      props.getUrl(artistNames, props.title);
       props.setCurrentTrack(props.track);
     }
 
   };
+
+
 
   return (
     <div className="tracks-container" style={!props.player.loading && props.player.playing && props.tracks.currentTrack.duration === props.duration ? { color: "green" } : { color: "white" }}>
@@ -33,7 +43,7 @@ const Track = props => {
           />
         </div>
         <div className="tracks-title" style={!props.player.loading && props.player.playing && props.tracks.currentTrack.duration === props.duration ? { color: "green" } : { color: "white" }} onClick={handleClick}>{props.title}</div>
-        <div className="tracks-artists-album" style={{color: "grey"}}>{props.artists} • {props.album}</div>
+        <div className="tracks-artists-album" style={{color: "grey"}}>{artistList} • <Link to={`/albums/${props.albumId}`}>{props.album}</Link></div>
     </div>
   );
 };

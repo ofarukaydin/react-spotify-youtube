@@ -9,7 +9,7 @@ const Sidenav = props => {
       <Link to="/categories">Categories</Link>
       <Link to="/featured">Featured</Link>
       <Link to="/new">New Releases</Link>
-      <Link to="/card">Test Cards</Link>
+      <Link to="/new">Albums</Link>
       <Playlists />
     </div>
   );

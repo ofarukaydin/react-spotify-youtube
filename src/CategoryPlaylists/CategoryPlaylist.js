@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Grid } from "@material-ui/core";
-import MediaCard from "../components/MediaCard";
+import CardMedia from "../CardMedia/CardMedia";
 import Spotify from "../Spotify/Spotify";
 
 const CategoryPlaylists = props => {
@@ -29,28 +28,20 @@ const CategoryPlaylists = props => {
   });
 
   let playlistCards = playlists.map(playlist => (
-    <Grid item xs={2} wrap="nowrap">
-      <MediaCard
+
+      <CardMedia
         key={playlist.id}
-        link={`/playlists/${playlist.id}`}
-        img={playlist.image}
-        content={playlist.name}
+        url={`/playlists/${playlist.id}`}
+        image={playlist.image}
+        title={playlist.name}
       />
-    </Grid>
   ));
   console.log(playlists);
 
   return (
-    <Grid
-      container
-      direction="row"
-      justify="flex-start"
-      alignItems="center"
-      spacing={16}
-      style={{ marginBottom: "90px", width: "100%" }}
-    >
-      {playlistCards}
-    </Grid>
+
+    <div className="card-grid-container">{playlistCards}</div>
+
   );
 };
 

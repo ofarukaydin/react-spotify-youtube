@@ -36,6 +36,7 @@ const Tracks = props => {
       album={track.album}
       duration={track.duration}
       track={track}
+      albumId={track.albumId}
     />
   ));
 

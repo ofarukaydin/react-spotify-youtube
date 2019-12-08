@@ -26,17 +26,19 @@ export const getTracks = playlistId => {
     dispatch(getTracksStart());
     Spotify.getTracks(playlistId)
     .then(tracks => {
+      console.log(tracks)
       const tracksList = tracks.items.map(trackElement => {
         const artistList = trackElement.track.artists.map(artistElement => {
-          return artistElement.name;
+          return {name: artistElement.name, id: artistElement.id};
         });
 
         return {
           title: trackElement.track.name,
-          artists: artistList.join(", "),
+          artists: artistList,
           album: trackElement.track.album.name,
           duration: trackElement.track.duration_ms,
-          addedAt: trackElement.added_at.slice(0, 10)
+          addedAt: trackElement.added_at.slice(0, 10),
+          albumId: trackElement.track.album.id,
         };
       });
       dispatch(getTracksSuccess(tracksList))
