@@ -3,14 +3,13 @@ import Spotify from "../../../Spotify/Spotify";
 import { useParams } from "react-router-dom";
 import Track from "./Track/Track";
 import "./Tracks.css";
-import { connect } from "react-redux";
-import * as actions from "../../../store/actions/tracks";
 
 const Tracks = props => {
   const [getPlaylistDetails, setPlaylistDetails] = useState({});
+  const [getPlaylistTracks, setPlaylistTracks] = useState([])
+
   const params = useParams();
   useEffect(() => {
-    props.getTracks(params.playlistId);
     (async () => {
       let playlist = await Spotify.getPlaylistDetails(params.playlistId);
       const iconList = playlist.images.map(icon => icon.url);
@@ -22,12 +21,31 @@ const Tracks = props => {
         ownerId: playlist.owner.id,
         description: playlist.description,
         primary_color: playlist.primary_color
-      });
-    })();
-  }, [params.playlistId]);
+      })
+      let tracks = await Spotify.getTracks(params.playlistId)
+      const tracksList = tracks.items.map(trackElement => {
+        const artistList = trackElement.track.artists.map(artistElement => {
+          return {name: artistElement.name, id: artistElement.id};
+        });
 
+        return {
+          title: trackElement.track.name,
+          artists: artistList,
+          album: trackElement.track.album.name,
+          duration: trackElement.track.duration_ms,
+          addedAt: trackElement.added_at.slice(0, 10),
+          albumId: trackElement.track.album.id,
+        };
+      })
+      setPlaylistTracks(tracksList)
+
+    })();
+
+  
+  }, [params.playlistId]);
+  console.log(getPlaylistTracks)
   let keyIndex = 0;
-  const trackElements = props.tracks.trackList.map(track => (
+  const trackElements = getPlaylistTracks.map(track => (
     <Track
       key={keyIndex++}
       title={track.title}
@@ -65,17 +83,4 @@ const Tracks = props => {
   );
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    getTracks: trackUrl => dispatch(actions.getTracks(trackUrl))
-  };
-};
-
-const mapStateToProps = state => {
-  return {
-    player: state.player,
-    tracks: state.tracks
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Tracks);
+export default Tracks

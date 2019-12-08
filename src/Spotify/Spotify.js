@@ -254,6 +254,24 @@ const Spotify = {
       Authorization: `Bearer ${token}`,
       'content-type': 'application/json'
     };
+    const response = await fetch(`https://api.spotify.com/v1/albums/${id}`,
+                        {
+                          headers : headers,
+                          method: 'GET'
+                        }
+                      );
+    const jsonResponse = await response.json();
+
+    return jsonResponse;
+  },
+
+  async getAlbumTracks(id)
+  {
+    const token = this.getAccessToken();
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      'content-type': 'application/json'
+    };
     const response = await fetch(`https://api.spotify.com/v1/albums/${id}/tracks`,
                         {
                           headers : headers,

@@ -6,10 +6,7 @@ import { Link } from "react-router-dom";
 const Sidenav = props => {
   return (
     <div className="Sidenav">
-      <Link to="/categories">Categories</Link>
-      <Link to="/featured">Featured</Link>
-      <Link to="/new">New Releases</Link>
-      <Link to="/new">Albums</Link>
+      <Link to="/browse">Browse</Link>
       <Playlists />
     </div>
   );
