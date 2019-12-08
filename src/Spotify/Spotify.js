@@ -35,7 +35,7 @@ const Spotify = {
   {
     try{
       const token = this.getAccessToken();
-      const response = await fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`,
+      const response = await fetch(`https://api.spotify.com/v1/search?type=album,track,playlist,artist&q=${term}`,
                           {
                             headers : {
                               Authorization: `Bearer ${token}`
@@ -355,6 +355,41 @@ const Spotify = {
     return jsonResponse;
   },
 
+  async getSavedAlbums()
+  {
+    const token = this.getAccessToken();
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      'content-type': 'application/json'
+    };
+    const response = await fetch(`https://api.spotify.com/v1/me/albums`,
+                        {
+                          headers : headers,
+                          method: 'GET'
+                        }
+                      );
+    const jsonResponse = await response.json();
+
+    return jsonResponse;
+  },
+
+  async getLikedSongs()
+  {
+    const token = this.getAccessToken();
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      'content-type': 'application/json'
+    };
+    const response = await fetch(`https://api.spotify.com/v1/me/tracks`,
+                        {
+                          headers : headers,
+                          method: 'GET'
+                        }
+                      );
+    const jsonResponse = await response.json();
+
+    return jsonResponse;
+  },
 
 // Add tracks to an existing playlist.
   async addTracks(token, userId, playlistID, trackURIs)

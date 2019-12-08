@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Spotify from "../Spotify/Spotify";
-import Track from "../Sidenav/Playlists/Tracks/Track/Track"
+import Track from "../Sidenav/Playlists/Tracks/Track/Track";
+import GridCardContainer from "../GridContainer/GridCardContainer/GridCardContainer";
+import GridContainer from "../GridContainer/GridContainer";
+import GridLeft from "../GridContainer/GridLeft/GridLeft";
+import GridRight from "../GridContainer/GridRight/GridRight";
 
 const Album = props => {
   const [getAlbum, SetAlbum] = useState([]);
-  const [getAlbumTracks, setAlbumTracks] = useState([])
+  const [getAlbumTracks, setAlbumTracks] = useState([]);
   const params = useParams();
   useEffect(() => {
     (async () => {
@@ -19,11 +23,11 @@ const Album = props => {
         id: album.id,
         name: album.name,
         releaseDate: album.release_date.slice(0, 4),
-        totalTracks: album.total_tracks,
-      })
+        totalTracks: album.total_tracks
+      });
       const tracksList = album.tracks.items.map(trackElement => {
         const artistList = trackElement.artists.map(artistElement => {
-          return {name: artistElement.name, id: artistElement.id}
+          return { name: artistElement.name, id: artistElement.id };
         });
 
         return {
@@ -32,17 +36,13 @@ const Album = props => {
           name: trackElement.name,
           duration: trackElement.duration_ms,
           trackNumber: trackElement.track_number,
-          id: trackElement.id,
+          id: trackElement.id
         };
-      })
-      setAlbumTracks(tracksList)
-      
-    })()
-    
-    ;
+      });
+      setAlbumTracks(tracksList);
+    })();
   }, [params.albumId]);
 
-  
   let keyIndex = 0;
   const trackElements = getAlbumTracks.map(track => (
     <Track
@@ -57,30 +57,16 @@ const Album = props => {
   ));
 
   return (
-    <div className="playlist-grid-container">
-      <div className="playlist-left-container">
-        <div className="playlist-left">
-          <img
-            className="playlist-img"
-            src={getAlbum.image}
-            alt="Cover"
-          />
-          <p className="playlist-name">{getAlbum.name}</p>
-          <p className="playlist-owner">{getAlbum.artists}</p>
-          <p className="playlist-description">
-            {getAlbum.releaseDate} • {getAlbum.totalTracks} songs
-          </p>
-        </div>
-      </div>
-      <div className="playlist-right-container">
-        <div className="playlist-right">
-          {trackElements ? trackElements : null}
-        </div>
-      </div>
-    </div>
+    <GridContainer>
+      <GridLeft
+        name={getAlbum.name}
+        owner={getAlbum.artists}
+        description={`${getAlbum.releaseDate} • ${getAlbum.totalTracks} songs`}
+        image={getAlbum.image}
+      ></GridLeft>
+      <GridRight>{trackElements ? trackElements : null}</GridRight>
+    </GridContainer>
   );
 };
 
-
-
-export default Album
+export default Album;

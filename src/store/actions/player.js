@@ -25,10 +25,10 @@ export const getUrl = (artists, title) => {
   return dispatch => {
     dispatch(getUrlStart());
     axios
-      .get("http://localhost/search?q=" + artists + " " + title)
+      .get("http://farukaydin.xyz/search?q=" + artists + " " + title)
       .then(res => {
         const url = res.data.url;
-        dispatch(getUrlSuccess(url))
+        dispatch(getUrlSuccess(url));
         dispatch(setTrack(url));
       })
       .catch(err => {
@@ -125,5 +125,4 @@ export const setLoading = value => {
     type: actionTypes.SET_LOADING,
     loading: value
   };
-}
-
+};

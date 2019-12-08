@@ -1,45 +1,28 @@
-import React, { useEffect, useState } from "react"
-import Playlist from "./Playlist/Playlist"
-import Spotify from "../../Spotify/Spotify"
+import React, { useEffect, useState } from "react";
+import Playlist from "./Playlist/Playlist";
+import Spotify from "../../Spotify/Spotify";
 
+const Playlists = props => {
+  const [Playlists, setPlaylists] = useState([]);
 
-const Playlists = (props) => {
+  useEffect(() => {
+    (async () => {
+      let playlists = await Spotify.getPlayList();
+      const playlistArray = playlists.items.map(playlist => {
+        return {
+          name: playlist.name,
+          id: playlist.id
+        };
+      });
+      setPlaylists(playlistArray);
+    })();
+  }, []);
 
-    const [Playlists, setPlaylists] = useState([])
+  let playlistElement = Playlists.map(playlist => {
+    return <Playlist key={playlist.id} name={playlist.name} id={playlist.id} />;
+  });
 
-    useEffect(
-        () => {
-            (async () => {
-                let playlists = await Spotify.getPlayList()
-                const playlistArray = playlists.items.map(
-                    playlist => {
-                        return {
-                            name: playlist.name,
-                            id: playlist.id
-                        }
-                    }
-                )
-                setPlaylists(playlistArray)
-            })()
+  return playlistElement;
+};
 
-        }, [])
-
-    let playlistElement = Playlists.map(
-        (playlist) => {
-            return (
-            <>
-               <Playlist key={playlist.id} name={playlist.name} id={playlist.id} />
-            </>    
-            )
-        }
-    )
-
-    return playlistElement
-
-
-} 
-
-
-
-
-export default Playlists
+export default Playlists;

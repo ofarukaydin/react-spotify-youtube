@@ -8,17 +8,10 @@ const initialState = {
     duration: null,
     addedAt: null
   },
-  trackList: []
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.GET_TRACKS_SUCCESS:
-      return {
-        ...state,
-        currentTrack: { ...state.currentTrack },
-        trackList: action.tracks
-      };
     case actionTypes.SET_CURRENT_TRACK:
       return {
         ...state,

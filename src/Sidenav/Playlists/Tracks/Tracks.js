@@ -3,10 +3,13 @@ import Spotify from "../../../Spotify/Spotify";
 import { useParams } from "react-router-dom";
 import Track from "./Track/Track";
 import "./Tracks.css";
+import GridContainer from "../../../GridContainer/GridContainer";
+import GridLeft from "../../../GridContainer/GridLeft/GridLeft";
+import GridRight from "../../../GridContainer/GridRight/GridRight";
 
 const Tracks = props => {
   const [getPlaylistDetails, setPlaylistDetails] = useState({});
-  const [getPlaylistTracks, setPlaylistTracks] = useState([])
+  const [getPlaylistTracks, setPlaylistTracks] = useState([]);
 
   const params = useParams();
   useEffect(() => {
@@ -21,12 +24,14 @@ const Tracks = props => {
         ownerId: playlist.owner.id,
         description: playlist.description,
         primary_color: playlist.primary_color
-      })
-      let tracks = await Spotify.getTracks(params.playlistId)
+      });
+      let tracks = await Spotify.getTracks(params.playlistId);
       const tracksList = tracks.items.map(trackElement => {
-        const artistList = trackElement.track.artists.map(artistElement => {
-          return {name: artistElement.name, id: artistElement.id};
-        });
+        const artistList = trackElement.track.artists
+          ? trackElement.track.artists.map(artistElement => {
+              return { name: artistElement.name, id: artistElement.id };
+            })
+          : { name: "", id: "" };
 
         return {
           title: trackElement.track.name,
@@ -34,14 +39,11 @@ const Tracks = props => {
           album: trackElement.track.album.name,
           duration: trackElement.track.duration_ms,
           addedAt: trackElement.added_at.slice(0, 10),
-          albumId: trackElement.track.album.id,
+          albumId: trackElement.track.album.id
         };
-      })
-      setPlaylistTracks(tracksList)
-
+      });
+      setPlaylistTracks(tracksList);
     })();
-
-  
   }, [params.playlistId]);
   let keyIndex = 0;
   const trackElements = getPlaylistTracks.map(track => (
@@ -58,28 +60,18 @@ const Tracks = props => {
   ));
 
   return (
-    <div className="playlist-grid-container">
-      <div className="playlist-left-container">
-        <div className="playlist-left">
-          <img
-            className="playlist-img"
-            src={getPlaylistDetails.image}
-            alt="Cover"
-          />
-          <p className="playlist-name">{getPlaylistDetails.name}</p>
-          <p className="playlist-owner">{getPlaylistDetails.owner}</p>
-          <p className="playlist-description">
-            {getPlaylistDetails.description}
-          </p>
-        </div>
-      </div>
-      <div className="playlist-right-container">
-        <div className="playlist-right">
-          {trackElements ? trackElements : null}
-        </div>
-      </div>
-    </div>
+
+      <GridContainer>
+        <GridLeft
+          name={getPlaylistDetails.name}
+          owner={getPlaylistDetails.owner}
+          description={getPlaylistDetails.description}
+          image={getPlaylistDetails.image}
+        ></GridLeft>
+        <GridRight>{trackElements ? trackElements : null}</GridRight>
+      </GridContainer>
+
   );
 };
 
-export default Tracks
+export default Tracks;
