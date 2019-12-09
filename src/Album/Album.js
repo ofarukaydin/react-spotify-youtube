@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Spotify from "../Spotify/Spotify";
 import Track from "../Sidenav/Playlists/Tracks/Track/Track";
-import GridCardContainer from "../GridContainer/GridCardContainer/GridCardContainer";
 import GridContainer from "../GridContainer/GridContainer";
 import GridLeft from "../GridContainer/GridLeft/GridLeft";
 import GridRight from "../GridContainer/GridRight/GridRight";

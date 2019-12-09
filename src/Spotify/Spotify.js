@@ -2,7 +2,7 @@ let spotifyAccesToken = "";
 // Please provide the client ID of your Spotify App.
 const clientId = "5bcff691b8a04bac809e087d8a0ce7f9";
 //Please provide the redirect URI added in your Spotify App while registration.
-const redirectUri = "http://farukaydin.xyz/tubify";
+const redirectUri = "http://localhost:3000/";
 
 const Spotify = {
   // Get the access token using authorize API from Sportify.

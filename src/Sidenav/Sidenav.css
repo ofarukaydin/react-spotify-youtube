@@ -1,0 +1,148 @@
+.Sidenav {
+  height: 100%;
+  width: 220px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #040404;
+  overflow-x: hidden;
+  padding-top: 20px;
+  margin-bottom: 90px;
+  color: #B3B3B3
+}
+
+.Sidenav a {
+  padding: 4px 4px 3px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.Sidenav a:hover {
+  color: white;
+}
+
+
+
+
+
+.navGroup {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navGroup ul {
+
+  padding: 0px;
+  list-style-type: none;
+  line-height: 24px;
+}
+
+.navGroup li a {
+  width: 100%;
+  position: relative;
+  transition: color 0.2s;
+  text-align: center;
+  display: flex;
+  padding: 10px;
+  
+
+}
+
+.navGroup li a:hover {
+  color: white;
+}
+
+.navGroup li a svg {
+  font-size: 24px;
+  padding-left: 10px;
+  padding-right: 10px;
+  
+
+}
+.sideActive {
+  color: white;
+}
+
+.sideActive::before {
+  order: 1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding-left: 0;
+  content: "";
+  display: block;
+  position: absolute;
+  top: 7px;
+  bottom: 5px;
+  width: 4px;
+  background-color: #1ed760;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.playlistNavbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.playlistNavbar ul {
+
+  padding: 0px;
+  list-style-type: none;
+  line-height: 24px;
+}
+
+.playlistNavbar li a {
+  width: 100%;
+  position: relative;
+  transition: color 0.2s;
+  text-align: center;
+  display: flex;
+  padding-left:20px;
+  
+
+}
+
+.playlistNavbar li a:hover {
+  color: white;
+}
+
+.playlistNavbar li a svg {
+  font-size: 24px;
+  padding-left: 10px;
+  padding-right: 10px;
+  
+
+}
+.playlistActive {
+  color: white;
+}
+
+.playlistActive::before {
+  order: 1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding-left: 0;
+  content: "";
+  display: block;
+  position: absolute;
+  top: 10px;
+  bottom: 8px;
+  width: 4px;
+  background-color: #1ed760;
+}
+
+

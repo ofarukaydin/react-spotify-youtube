@@ -1,14 +1,8 @@
 import React from "react";
 import Playlists from "./Playlists/Playlists";
 import "./Sidenav.css";
-import { Link, NavLink } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faHome,
-  faSearch,
-  faBookOpen
-} from "@fortawesome/free-solid-svg-icons";
-import Search from "./svg/Search";
+import { NavLink } from "react-router-dom";
+
 
 const Sidenav = props => {
   return (

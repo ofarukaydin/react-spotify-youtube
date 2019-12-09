@@ -1,0 +1,41 @@
+.browseNavbar {
+  display: flex;
+}
+
+.browseNavbar ul {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  list-style-type: none;
+}
+
+.browseNavbar li a {
+  width: 60px;
+  padding: 30px;
+  position: relative;
+  transition: color 0.2s;
+}
+
+.browseNavbar li {
+  text-align: center;
+}
+
+.browseNavbar li a:hover {
+  color: white;
+}
+
+.isActive {
+  color: white;
+}
+
+.isActive::before {
+  content: "";
+  height: 2px;
+  background-color: #1db954;
+  width: 30px;
+  position: absolute;
+  display: block;
+  left: 50%;
+  bottom: 25px;
+  margin-left: -15px;
+}
