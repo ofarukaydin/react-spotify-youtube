@@ -16,11 +16,23 @@
   transition: color 0.2s;
 }
 
+.browseNavbar li span {
+  width: 60px;
+  padding: 30px;
+  position: relative;
+  transition: color 0.2s;
+  cursor: pointer;
+}
+
 .browseNavbar li {
   text-align: center;
 }
 
 .browseNavbar li a:hover {
+  color: white;
+}
+
+.browseNavbar li span:hover {
   color: white;
 }
 

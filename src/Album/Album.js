@@ -13,7 +13,6 @@ const Album = props => {
   useEffect(() => {
     (async () => {
       let album = await Spotify.getAlbums(params.albumId);
-      console.log(album);
       const iconList = album.images.map(icon => icon.url);
       const artistsList = album.artists.map(artist => artist.name);
       SetAlbum({

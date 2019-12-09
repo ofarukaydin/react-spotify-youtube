@@ -10,7 +10,6 @@ const Categories = props => {
     (async () => {
       let featuredPlaylists = await Spotify.getFeaturedPlaylists();
       setFeaturedPlaylists(featuredPlaylists.playlists.items);
-      console.log(featuredPlaylists);
     })();
   }, []);
 

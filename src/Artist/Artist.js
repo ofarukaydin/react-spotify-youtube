@@ -34,7 +34,6 @@ const Artist = () => {
       setPopularTracks(tracksList);
 
       let artistInfo = await Spotify.getArtist(params.artistId);
-      console.log(artistInfo);
       let artistInfoList = {
         name: artistInfo.name,
         image: artistInfo.images.map(image => image.url)[0],

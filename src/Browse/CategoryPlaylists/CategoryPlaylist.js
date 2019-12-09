@@ -9,12 +9,10 @@ const CategoryPlaylists = props => {
   const [getCategoryPlaylists, setCategoryPlaylists] = useState([]);
   const params = useParams();
   const location = useLocation();
-  console.log(location);
 
   useEffect(() => {
     (async () => {
       let playlists = await Spotify.getCategoryPlaylists(params.categoryId);
-      console.log(playlists.playlists.items);
       setCategoryPlaylists(playlists.playlists.items);
     })();
   }, [params.categoryId]);

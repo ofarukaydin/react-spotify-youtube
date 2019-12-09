@@ -60,7 +60,6 @@ const Search = () => {
       artistView
     />
   ));
-  console.log(getSearchResults);
 
   let playlistsList = getSearchResults.playlists.map(playlist => (
     <CardMedia
@@ -106,16 +105,18 @@ const Search = () => {
       <div className="browseNavbar">
         <ul>
           <li onClick={() => dispatch({ type: "tracks" })}>
-            <a className={state.tracks ? "isActive" : null}>Tracks</a>
+            <span className={state.tracks ? "isActive" : null}>Tracks</span>
           </li>
           <li onClick={() => dispatch({ type: "artists" })}>
-            <a className={state.artists ? "isActive" : null}>Artists</a>
+            <span className={state.artists ? "isActive" : null}>Artists</span>
           </li>
           <li onClick={() => dispatch({ type: "playlists" })}>
-            <a className={state.playlists ? "isActive" : null}>Playlists</a>
+            <span className={state.playlists ? "isActive" : null}>
+              Playlists
+            </span>
           </li>
           <li onClick={() => dispatch({ type: "albums" })}>
-            <a className={state.albums ? "isActive" : null}>Albums</a>
+            <span className={state.albums ? "isActive" : null}>Albums</span>
           </li>
         </ul>
       </div>
