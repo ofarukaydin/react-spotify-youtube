@@ -6,7 +6,7 @@ This is a spotify clone that uses youtube as backend. It's my learning project f
 
 ### How does it work?
 
-Python(FastAPI) is used in backend. It uses beatifulsoup module to fetch track url from youtube and passes to react-player.
+Python(FastAPI) is used at backend. It uses beatifulsoup module to fetch track url from youtube and passes to react-player.
 
 ### What is the fetching algorithm?
 
