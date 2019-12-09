@@ -1,8 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Playlist = props => {
-  return <Link to={"/playlists/" + props.id}>{props.name}</Link>;
+  return (
+    <li>
+      <NavLink activeClassName="playlistActive" to={"/playlists/" + props.id}>
+        {props.name}
+      </NavLink>
+    </li>
+  );
 };
 
 export default Playlist;

@@ -13,7 +13,7 @@ import Library from "./Library/Library";
 import Albums from "./Library/Albums/Albums";
 import Playlists from "./Library/Playlists/Playlists";
 import LikedSongs from "./Library/LikedSongs/LikedSongs";
-import Search from "./Search/Seach";
+import Search from "./Search/Search";
 
 const App = props => {
   return (

@@ -19,10 +19,16 @@ const Playlists = props => {
   }, []);
 
   let playlistElement = Playlists.map(playlist => {
-    return <Playlist key={playlist.id} name={playlist.name} id={playlist.id} />;
+    return (<Playlist key={playlist.id} name={playlist.name} id={playlist.id} />);
   });
 
-  return playlistElement;
+  return (
+    <div className="playlistNavbar">
+    <ul>
+      {playlistElement}
+    </ul>
+  </div>
+  );
 };
 
 export default Playlists;

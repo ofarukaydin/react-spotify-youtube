@@ -57,7 +57,7 @@ class Player extends Component {
         <div className="player-grid-container">
           <ReactPlayer
             ref={this.ref}
-            width="200px"
+            width="220px"
             height="90px"
             url={url}
             pip={pip}
