@@ -14,6 +14,6 @@ As simple as searching track artist + track title and returning the first result
 
 ### Why use web crawler instead of Google API?
 
-Google limits the api very hard for free usage. It's a workaround for it and i must say it works pretty well
+Google limits the usage of api for free users. It's a workaround for it and i must say it works pretty well.
 
 [Live Demo](http://farukaydin.xyz/tubify)
