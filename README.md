@@ -1,4 +1,7 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[Live Demo](http://farukaydin.xyz/tubify)
+
+[ss]: https://github.com/hayspat/react-spotify-youtube/raw/master/Screenshot%20from%202019-12-09%2017-16-33.png "Logo Title Text 2" 
+![alt text][ss]
 
 ## What's the purpose of this package?
 
@@ -16,4 +19,3 @@ As simple as searching track artist + track title and returning the first result
 
 Google limits the usage of api for free users. It's a workaround for it and i must say it works pretty well.
 
-[Live Demo](http://farukaydin.xyz/tubify)
