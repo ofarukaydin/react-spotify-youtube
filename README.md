@@ -5,7 +5,7 @@
 
 ## What's the purpose of this package?
 
-This is a spotify clone that uses youtube as backend. It's my learning project for react.
+This is a spotify clone that uses youtube as backend. Playlists, categories etc all fetched from Spotify API. Only tracks are played by youtube.
 
 ### How does it work?
 
