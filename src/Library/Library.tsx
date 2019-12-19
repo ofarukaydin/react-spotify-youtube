@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const Library = props => {
+const Library = () => {
   return (
     <div className="browseNavbar">
       <ul>

@@ -5,9 +5,22 @@ import GridContainer from "../../GridContainer/GridContainer";
 import GridRight from "../../GridContainer/GridRight/GridRight";
 import GridLeft from "../../GridContainer/GridLeft/GridLeft";
 
+type SetLikedSongs = {
+  title: string;
+  id: string;
+  artists: {
+    name: string;
+    id: string;
+  }[];
+  album: string;
+  duration: number;
+  addedAt: string;
+  albumId: string;
+};
+
 const LikedSongs = () => {
-  const [getLikedSongs, setLikedSongs] = useState([]);
-  const [getTotalSongs, setTotalSongs] = useState([]);
+  const [getLikedSongs, setLikedSongs] = useState<SetLikedSongs[]>([]);
+  const [getTotalSongs, setTotalSongs] = useState<Number>();
 
   useEffect(() => {
     (async () => {
@@ -25,17 +38,17 @@ const LikedSongs = () => {
           album: trackElement.track.album.name,
           duration: trackElement.track.duration_ms,
           addedAt: trackElement.added_at.slice(0, 10),
-          albumId: trackElement.track.album.id
+          albumId: trackElement.track.album.id,
+          id: trackElement.track.id
         };
       });
       setLikedSongs(tracksList);
     })();
   }, []);
 
-  let keyIndex = 0;
   const trackElements = getLikedSongs.map(track => (
     <Track
-      key={keyIndex++}
+      key={track.id}
       title={track.title}
       addedAt={track.addedAt}
       artists={track.artists}
@@ -53,7 +66,7 @@ const LikedSongs = () => {
         owner={`${getTotalSongs} SONGS`}
         image="https://t.scdn.co/images/3099b3803ad9496896c43f22fe9be8c4.png"
       ></GridLeft>
-      <GridRight>{trackElements ? trackElements : null}</GridRight>
+      <GridRight>{trackElements ? trackElements : undefined}</GridRight>
     </GridContainer>
   );
 };

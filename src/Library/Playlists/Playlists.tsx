@@ -2,13 +2,19 @@ import React, { useEffect, useState } from "react";
 import Spotify from "../../Spotify/Spotify";
 import CardMedia from "../../CardMedia/CardMedia";
 import GridCardContainer from "../../GridContainer/GridCardContainer/GridCardContainer";
+import { ISearch } from "../../Spotify/interfaces";
+
 const Playlists = () => {
-  const [getPlaylists, setPlaylists] = useState([]);
+  const [getPlaylists, setPlaylists] = useState<ISearch["playlists"]["items"]>(
+    []
+  );
 
   useEffect(() => {
     (async () => {
       let playlists = await Spotify.getPlayList();
-      setPlaylists(playlists.items);
+      if (playlists) {
+        setPlaylists(playlists.items);
+      }
     })();
   }, []);
 
@@ -20,8 +26,7 @@ const Playlists = () => {
       name: playlist.name,
       owner: playlist.owner.display_name,
       ownerId: playlist.owner.id,
-      description: playlist.description,
-      primary_color: playlist.primary_color
+      description: playlist.description
     };
   });
 

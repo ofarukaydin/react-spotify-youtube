@@ -1,5 +1,24 @@
 import * as actionTypes from "../actions/actionTypes";
 
+/* type PlayerState = {
+  url: null | string;
+  fetchedUrl: null | string;
+  pip: boolean;
+  playing: boolean;
+  controls: boolean;
+  light: boolean;
+  volume: number;
+  muted: boolean;
+  played: number;
+  loaded: number;
+  duration: number;
+  playbackRate: number;
+  loop: boolean;
+  seeking: boolean;
+  loading: boolean;
+  error: null | string
+} */
+
 const initialState = {
   url: null,
   fetchedUrl: null,
@@ -16,7 +35,7 @@ const initialState = {
   loop: false,
   seeking: false,
   loading: false,
-  error: null,
+  error: null
 };
 
 const reducer = (state = initialState, action) => {

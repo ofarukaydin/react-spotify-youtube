@@ -5,6 +5,32 @@ import CardMedia from "../CardMedia/CardMedia";
 import Track from "../Sidenav/Playlists/Tracks/Track/Track";
 import "./Search.css";
 
+import {
+  SearchTrackResults,
+  SearchAlbumResults,
+  SearchArtistResults,
+  SearchPlaylistResults
+} from "../Spotify/interfaces";
+
+type ViewState = {
+  albums: boolean;
+  tracks: boolean;
+  playlists: boolean;
+  artists: boolean;
+};
+
+type SearchResultsState = {
+  albums: SearchAlbumResults[];
+  playlists: SearchPlaylistResults[];
+  tracks: SearchTrackResults[];
+  artists: SearchArtistResults[];
+};
+type Action =
+  | { type: "albums" }
+  | { type: "artists" }
+  | { type: "playlists" }
+  | { type: "tracks" };
+
 const initialState = {
   albums: false,
   tracks: true,
@@ -12,7 +38,7 @@ const initialState = {
   artists: false
 };
 
-function reducer(state, action) {
+function reducer(state: ViewState, action: Action) {
   switch (action.type) {
     case "albums":
       return { albums: true, tracks: false, playlists: false, artists: false };
@@ -30,21 +56,23 @@ function reducer(state, action) {
 const Search = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [searchValue, setSearchValue] = useState("");
-  const [getSearchResults, setSearchResults] = useState({
+  const [getSearchResults, setSearchResults] = useState<SearchResultsState>({
     albums: [],
     artists: [],
     playlists: [],
     tracks: []
   });
-  const inputRef = useRef();
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (searchValue === inputRef.current.value) {
-        (async () => {
-          let search = await Spotify.searchTracks(searchValue);
-          setSearchResults(search);
-        })();
+      if (inputRef && inputRef.current) {
+        if (searchValue === inputRef.current.value) {
+          (async () => {
+            let search = await Spotify.searchAll(searchValue);
+            setSearchResults(search);
+          })();
+        }
       }
     }, 500);
     return () => {
@@ -75,10 +103,9 @@ const Search = () => {
       title={album.name}
     />
   ));
-  let keyIndex = 0;
   let tracksList = getSearchResults.tracks.map(track => (
     <Track
-      key={keyIndex++}
+      key={track.id}
       title={track.name}
       artists={track.artists}
       album={track.album}
@@ -90,8 +117,8 @@ const Search = () => {
 
   return (
     <>
-      <div class="box">
-        <div class="container-1">
+      <div className="box">
+        <div className="container-1">
           <input
             ref={inputRef}
             value={searchValue}
@@ -105,18 +132,24 @@ const Search = () => {
       <div className="browseNavbar">
         <ul>
           <li onClick={() => dispatch({ type: "tracks" })}>
-            <span className={state.tracks ? "isActive" : null}>Tracks</span>
+            <span className={state.tracks ? "isActive" : undefined}>
+              Tracks
+            </span>
           </li>
           <li onClick={() => dispatch({ type: "artists" })}>
-            <span className={state.artists ? "isActive" : null}>Artists</span>
+            <span className={state.artists ? "isActive" : undefined}>
+              Artists
+            </span>
           </li>
           <li onClick={() => dispatch({ type: "playlists" })}>
-            <span className={state.playlists ? "isActive" : null}>
+            <span className={state.playlists ? "isActive" : undefined}>
               Playlists
             </span>
           </li>
           <li onClick={() => dispatch({ type: "albums" })}>
-            <span className={state.albums ? "isActive" : null}>Albums</span>
+            <span className={state.albums ? "isActive" : undefined}>
+              Albums
+            </span>
           </li>
         </ul>
       </div>

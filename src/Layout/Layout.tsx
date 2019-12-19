@@ -3,8 +3,7 @@ import Sidenav from "../Sidenav/Sidenav";
 import React from "react";
 import Player from "../Player/Player";
 
-
-const Layout = props => {
+const Layout = (props: { children: React.ReactNode }) => {
   return (
     <>
       <Sidenav />

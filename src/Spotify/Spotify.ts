@@ -1,3 +1,21 @@
+import {
+  SearchTrackResults,
+  SearchAlbumResults,
+  SearchArtistResults,
+  SearchPlaylistResults,
+  ISearch,
+  GetAlbum,
+  GetTracks,
+  Artist,
+  ArtistsTopTracks,
+  Categories,
+  CategoryPlaylists,
+  FeaturedPlaylists,
+  NewReleases,
+  Playlist,
+  SavedAlbums
+} from "./interfaces";
+
 let spotifyAccesToken = "";
 // Please provide the client ID of your Spotify App.
 const clientId = "5bcff691b8a04bac809e087d8a0ce7f9";
@@ -18,21 +36,21 @@ const Spotify = {
       spotifyAccesToken = accessToken[1];
       let expiryTime = Number(expiresIn[1]);
       window.setTimeout(() => (spotifyAccesToken = ""), expiryTime * 1000);
-      window.history.pushState("Access Token", null, "/");
+      window.history.pushState("Access Token", "", "/");
       return spotifyAccesToken;
     } else {
-      window.location = `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${encodeURIComponent(
+      window.location.href = `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${encodeURIComponent(
         scopes
       )}&response_type=token`;
     }
   },
 
   // Search for a track from Spotify
-  async searchTracks(term) {
-    let searchTrackResults = [];
-    let searchAlbumResults = [];
-    let searchArtistResults = [];
-    let searchPlaylistResults = [];
+  async searchAll(term: string) {
+    let searchTrackResults: SearchTrackResults[] = [];
+    let searchAlbumResults: SearchAlbumResults[] = [];
+    let searchArtistResults: SearchArtistResults[] = [];
+    let searchPlaylistResults: SearchPlaylistResults[] = [];
 
     try {
       const token = this.getAccessToken();
@@ -44,11 +62,14 @@ const Spotify = {
           }
         }
       );
-      const jsonResponse = await response.json();
+      const jsonResponse: ISearch = await response.json();
 
       if (jsonResponse.tracks && jsonResponse.tracks.items) {
         searchTrackResults = jsonResponse.tracks.items.map((track, index) => {
-          const artistList = track.artists.map(artistElement => {
+          const artistList = track.artists.map((artistElement): {
+            id: string;
+            name: string;
+          } => {
             return { name: artistElement.name, id: artistElement.id };
           });
 
@@ -82,19 +103,16 @@ const Spotify = {
       }
 
       if (jsonResponse.playlists && jsonResponse.playlists.items) {
-        searchPlaylistResults = jsonResponse.playlists.items.map(
-          playlist => {
-            return {
-              image: playlist.images[0].url,
-              id: playlist.id,
-              name: playlist.name,
-              owner: playlist.owner.display_name,
-              ownerId: playlist.owner.id,
-              description: playlist.description,
-              primary_color: playlist.primary_color
-            };
-          }
-        );
+        searchPlaylistResults = jsonResponse.playlists.items.map(playlist => {
+          return {
+            image: playlist.images[0].url,
+            id: playlist.id,
+            name: playlist.name,
+            owner: playlist.owner.display_name,
+            ownerId: playlist.owner.id,
+            description: playlist.description
+          };
+        });
       }
       return {
         albums: searchAlbumResults,
@@ -105,13 +123,20 @@ const Spotify = {
     } catch (e) {
       console.log("Error occured in search");
     }
-    // If response is empty return emty array.
-    return []
+
+    // To workaround for returning Promise<never[]>
+    const result = {
+      albums: [],
+      artists: [],
+      playlists: [],
+      tracks: []
+    };
+    return result;
   },
 
   // Save the play list to Spotify account.
   // return true if playlist created successfully.
-  async savePlaylist(name, trackURIs) {
+  /*   async savePlaylist(name, trackURIs) {
     try {
       if (name && trackURIs) {
         const token = this.getAccessToken();
@@ -130,10 +155,10 @@ const Spotify = {
       console.log(e);
     }
     return false;
-  },
+  }, */
 
   // Get user Id of logged in account user.
-  async getUserId(token) {
+  async getUserId(token: string) {
     const headers = {
       Authorization: `Bearer ${token}`
     };
@@ -149,7 +174,7 @@ const Spotify = {
   },
 
   // Create a play list with given name and return it's ID
-  async createPlayList(token, userId, name) {
+  /*   async createPlayList(token, userId, name) {
     const headers = {
       Authorization: `Bearer ${token}`,
       "content-type": "application/json"
@@ -169,44 +194,47 @@ const Spotify = {
       playlistID = jsonResponse.id;
     }
     return playlistID;
-  },
+  }, */
 
   async getPlayList() {
     const token = this.getAccessToken();
-    const userId = await this.getUserId(token);
-    const headers = {
-      Authorization: `Bearer ${token}`,
-      "content-type": "application/json"
-    };
-    const response = await fetch(
-      `https://api.spotify.com/v1/users/${userId}/playlists`,
-      {
-        headers: headers,
-        method: "GET"
-      }
-    );
-    const jsonResponse = await response.json();
-
-    return jsonResponse;
+    if (token) {
+      const userId = await this.getUserId(token);
+      const headers = {
+        Authorization: `Bearer ${token}`,
+        "content-type": "application/json"
+      };
+      const response = await fetch(
+        `https://api.spotify.com/v1/users/${userId}/playlists`,
+        {
+          headers: headers,
+          method: "GET"
+        }
+      );
+      const jsonResponse: ISearch["playlists"] = await response.json();
+      return jsonResponse;
+    }
   },
 
-  async getTracks(id) {
+  async getTracks(id: string) {
     const token = this.getAccessToken();
-    const userId = await this.getUserId(token);
-    const headers = {
-      Authorization: `Bearer ${token}`,
-      "content-type": "application/json"
-    };
-    const response = await fetch(
-      `https://api.spotify.com/v1/users/${userId}/playlists/${id}/tracks`,
-      {
-        headers: headers,
-        method: "GET"
-      }
-    );
-    const jsonResponse = await response.json();
-
-    return jsonResponse;
+    if (token) {
+      const userId = await this.getUserId(token);
+      const headers = {
+        Authorization: `Bearer ${token}`,
+        "content-type": "application/json"
+      };
+      const response = await fetch(
+        `https://api.spotify.com/v1/users/${userId}/playlists/${id}/tracks`,
+        {
+          headers: headers,
+          method: "GET"
+        }
+      );
+      const jsonResponse: GetTracks = await response.json();
+      console.log(jsonResponse);
+      return jsonResponse;
+    }
   },
 
   async getCategories() {
@@ -222,12 +250,11 @@ const Spotify = {
         method: "GET"
       }
     );
-    const jsonResponse = await response.json();
-
+    const jsonResponse: Categories = await response.json();
     return jsonResponse;
   },
 
-  async getCategoryPlaylists(id) {
+  async getCategoryPlaylists(id: string) {
     const token = this.getAccessToken();
     const headers = {
       Authorization: `Bearer ${token}`,
@@ -240,8 +267,7 @@ const Spotify = {
         method: "GET"
       }
     );
-    const jsonResponse = await response.json();
-
+    const jsonResponse: CategoryPlaylists = await response.json();
     return jsonResponse;
   },
 
@@ -258,8 +284,7 @@ const Spotify = {
         method: "GET"
       }
     );
-    const jsonResponse = await response.json();
-
+    const jsonResponse: FeaturedPlaylists = await response.json();
     return jsonResponse;
   },
 
@@ -276,12 +301,11 @@ const Spotify = {
         method: "GET"
       }
     );
-    const jsonResponse = await response.json();
-
+    const jsonResponse: NewReleases = await response.json();
     return jsonResponse;
   },
 
-  async getAlbums(id) {
+  async getAlbums(id: string) {
     const token = this.getAccessToken();
     const headers = {
       Authorization: `Bearer ${token}`,
@@ -291,30 +315,12 @@ const Spotify = {
       headers: headers,
       method: "GET"
     });
-    const jsonResponse = await response.json();
+    const jsonResponse: GetAlbum = await response.json();
 
     return jsonResponse;
   },
 
-  async getAlbumTracks(id) {
-    const token = this.getAccessToken();
-    const headers = {
-      Authorization: `Bearer ${token}`,
-      "content-type": "application/json"
-    };
-    const response = await fetch(
-      `https://api.spotify.com/v1/albums/${id}/tracks`,
-      {
-        headers: headers,
-        method: "GET"
-      }
-    );
-    const jsonResponse = await response.json();
-
-    return jsonResponse;
-  },
-
-  async getPlaylistDetails(id) {
+  async getPlaylistDetails(id: string) {
     const token = this.getAccessToken();
     const headers = {
       Authorization: `Bearer ${token}`,
@@ -324,12 +330,11 @@ const Spotify = {
       headers: headers,
       method: "GET"
     });
-    const jsonResponse = await response.json();
-
+    const jsonResponse: Playlist = await response.json();
     return jsonResponse;
   },
 
-  async getArtist(id) {
+  async getArtist(id: string) {
     const token = this.getAccessToken();
     const headers = {
       Authorization: `Bearer ${token}`,
@@ -339,12 +344,11 @@ const Spotify = {
       headers: headers,
       method: "GET"
     });
-    const jsonResponse = await response.json();
-
+    const jsonResponse: Artist = await response.json();
     return jsonResponse;
   },
 
-  async getArtistsTopTracks(id) {
+  async getArtistsTopTracks(id: string) {
     const token = this.getAccessToken();
     const headers = {
       Authorization: `Bearer ${token}`,
@@ -357,12 +361,11 @@ const Spotify = {
         method: "GET"
       }
     );
-    const jsonResponse = await response.json();
-
+    const jsonResponse: ArtistsTopTracks = await response.json();
     return jsonResponse;
   },
 
-  async getArtistsAlbums(id) {
+  async getArtistsAlbums(id: string) {
     const token = this.getAccessToken();
     const headers = {
       Authorization: `Bearer ${token}`,
@@ -375,8 +378,7 @@ const Spotify = {
         method: "GET"
       }
     );
-    const jsonResponse = await response.json();
-
+    const jsonResponse: ISearch["albums"] = await response.json();
     return jsonResponse;
   },
 
@@ -390,8 +392,7 @@ const Spotify = {
       headers: headers,
       method: "GET"
     });
-    const jsonResponse = await response.json();
-
+    const jsonResponse: SavedAlbums = await response.json();
     return jsonResponse;
   },
 
@@ -405,13 +406,12 @@ const Spotify = {
       headers: headers,
       method: "GET"
     });
-    const jsonResponse = await response.json();
-
+    const jsonResponse: GetTracks = await response.json();
     return jsonResponse;
-  },
+  }
 
   // Add tracks to an existing playlist.
-  async addTracks(token, userId, playlistID, trackURIs) {
+  /*   async addTracks(token, userId, playlistID, trackURIs) {
     const headers = {
       Authorization: `Bearer ${token}`,
       "content-type": "application/json"
@@ -430,6 +430,6 @@ const Spotify = {
       return true;
     }
     return false;
-  }
+  } */
 };
 export default Spotify;

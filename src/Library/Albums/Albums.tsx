@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import Spotify from "../../Spotify/Spotify";
 import CardMedia from "../../CardMedia/CardMedia";
 import GridCardContainer from "../../GridContainer/GridCardContainer/GridCardContainer";
+import { SavedAlbums } from "../../Spotify/interfaces";
 
 const Albums = () => {
-  const [getSavedAlbums, setSavedAlbums] = useState([]);
+  const [getSavedAlbums, setSavedAlbums] = useState<SavedAlbums["items"]>([]);
 
   useEffect(() => {
     (async () => {
@@ -12,7 +13,6 @@ const Albums = () => {
       setSavedAlbums(savedAlbums.items);
     })();
   }, []);
-
   let albumsList = getSavedAlbums.map(album => (
     <CardMedia
       key={album.album.id}

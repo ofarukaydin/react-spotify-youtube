@@ -8,11 +8,45 @@ import GridContainer from "../GridContainer/GridContainer";
 import GridLeft from "../GridContainer/GridLeft/GridLeft";
 import GridRight from "../GridContainer/GridRight/GridRight";
 
+type PopularTracksState = {
+  title: string;
+  artists: {
+    name: string;
+    id: string;
+  }[];
+  album: string;
+  duration: number;
+  albumId: string;
+  id: string;
+};
+
+type ArtistInfoState = {
+  name: string;
+  image: string;
+  followers: number;
+  genres: string;
+  popularity: number;
+  id: string;
+};
+
+type ArtistsAlbumsState = {
+  image: string;
+  artists: string;
+  id: string;
+  name: string;
+  releaseDate: string;
+  totalTracks: number;
+};
+
 const Artist = () => {
-  const params = useParams();
-  const [getPopularTracks, setPopularTracks] = useState([]);
-  const [getArtistsAlbums, setArtistsAlbums] = useState([]);
-  const [getArtistInfo, setArtistInfo] = useState({});
+  const params = useParams<{ artistId: string }>();
+  const [getPopularTracks, setPopularTracks] = useState<PopularTracksState[]>(
+    []
+  );
+  const [getArtistsAlbums, setArtistsAlbums] = useState<ArtistsAlbumsState[]>(
+    []
+  );
+  const [getArtistInfo, setArtistInfo] = useState<ArtistInfoState>();
 
   useEffect(() => {
     (async () => {
@@ -28,7 +62,8 @@ const Artist = () => {
           artists: artistList,
           album: trackElement.album.name,
           duration: trackElement.duration_ms,
-          albumId: trackElement.album.id
+          albumId: trackElement.album.id,
+          id: trackElement.id
         };
       });
       setPopularTracks(tracksList);
@@ -62,10 +97,9 @@ const Artist = () => {
       setArtistsAlbums(albumList);
     })();
   }, [params]);
-  let keyIndex = 0;
   const popularTracks = getPopularTracks.map(track => (
     <Track
-      key={keyIndex++}
+      key={track.id}
       title={track.title}
       artists={track.artists}
       album={track.album}
@@ -88,14 +122,16 @@ const Artist = () => {
     <>
       <GridContainer>
         <GridLeft
-          name={getArtistInfo.name}
-          owner={`${getArtistInfo.followers} followers`}
-          image={getArtistInfo.image}
+          name={getArtistInfo ? getArtistInfo.name : undefined}
+          owner={
+            getArtistInfo ? `${getArtistInfo.followers} followers` : undefined
+          }
+          image={getArtistInfo ? getArtistInfo.image : undefined}
           artistView
         ></GridLeft>
         <GridRight>
           <h1 style={{ margin: "30px 0 0 15px" }}>Popular Tracks</h1>
-          {popularTracks ? popularTracks : null}
+          {popularTracks ? popularTracks : undefined}
         </GridRight>
       </GridContainer>
       <h1 style={{ textAlign: "center" }}>Albums</h1>

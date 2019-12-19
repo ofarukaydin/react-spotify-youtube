@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import Tracks from "./Sidenav/Playlists/Tracks/Tracks";
 import Layout from "./Layout/Layout";
-import Album from "./Album/Album.js";
+import Album from "./Album/Album";
 import Browse from "./Browse/Browse";
 import NewReleases from "./Browse/NewReleases/NewReleases";
 import FeaturedPlaylists from "./Browse/FeaturedPlaylists/FeaturedPlaylists";
@@ -15,10 +15,10 @@ import Playlists from "./Library/Playlists/Playlists";
 import LikedSongs from "./Library/LikedSongs/LikedSongs";
 import Search from "./Search/Search";
 
-const App = props => {
+const App = (): JSX.Element => {
   return (
     <BrowserRouter>
-      <Layout {...props}>
+      <Layout>
         <Route path="/browse" component={Browse} />
         <Route path="/browse/categories" component={Categories} />
         <Route path="/browse/featured" component={FeaturedPlaylists} />

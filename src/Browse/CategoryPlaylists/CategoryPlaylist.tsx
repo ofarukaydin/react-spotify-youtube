@@ -4,10 +4,11 @@ import CardMedia from "../../CardMedia/CardMedia";
 import Spotify from "../../Spotify/Spotify";
 import { useLocation } from "react-router";
 import GridCardContainer from "../../GridContainer/GridCardContainer/GridCardContainer";
+import { Playlist } from "../../Spotify/interfaces";
 
-const CategoryPlaylists = props => {
-  const [getCategoryPlaylists, setCategoryPlaylists] = useState([]);
-  const params = useParams();
+const CategoryPlaylists = () => {
+  const [getCategoryPlaylists, setCategoryPlaylists] = useState<Playlist[]>([]);
+  const params = useParams<{ categoryId: string }>();
   const location = useLocation();
 
   useEffect(() => {
@@ -25,8 +26,7 @@ const CategoryPlaylists = props => {
       name: playlist.name,
       owner: playlist.owner.display_name,
       ownerId: playlist.owner.id,
-      description: playlist.description,
-      primary_color: playlist.primary_color
+      description: playlist.description
     };
   });
 

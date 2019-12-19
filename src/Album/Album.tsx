@@ -6,10 +6,30 @@ import GridContainer from "../GridContainer/GridContainer";
 import GridLeft from "../GridContainer/GridLeft/GridLeft";
 import GridRight from "../GridContainer/GridRight/GridRight";
 
-const Album = props => {
-  const [getAlbum, SetAlbum] = useState([]);
-  const [getAlbumTracks, setAlbumTracks] = useState([]);
-  const params = useParams();
+type AlbumState = {
+  image: string;
+  artists: string;
+  id: string;
+  name: string;
+  releaseDate: string;
+  totalTracks: number;
+};
+
+type AlbumTracksState = {
+  title: string;
+  artists: {
+    name: string;
+    id: string;
+  }[];
+  name: string;
+  duration: number;
+  id: string;
+};
+
+const Album = () => {
+  const [getAlbum, SetAlbum] = useState<AlbumState>();
+  const [getAlbumTracks, setAlbumTracks] = useState<AlbumTracksState[]>([]);
+  const params = useParams<{ albumId: string }>();
   useEffect(() => {
     (async () => {
       let album = await Spotify.getAlbums(params.albumId);
@@ -33,7 +53,6 @@ const Album = props => {
           artists: artistList,
           name: trackElement.name,
           duration: trackElement.duration_ms,
-          trackNumber: trackElement.track_number,
           id: trackElement.id
         };
       });
@@ -41,28 +60,35 @@ const Album = props => {
     })();
   }, [params.albumId]);
 
-  let keyIndex = 0;
-  const trackElements = getAlbumTracks.map(track => (
-    <Track
-      key={keyIndex++}
-      title={track.title}
-      artists={track.artists}
-      album={getAlbum.name}
-      duration={track.duration}
-      track={track}
-      albumId={getAlbum.id}
-    />
-  ));
+  let trackElements;
+
+  if (getAlbum) {
+    trackElements = getAlbumTracks.map(track => (
+      <Track
+        key={track.id}
+        title={track.title}
+        artists={track.artists}
+        album={getAlbum.name}
+        duration={track.duration}
+        track={track}
+        albumId={getAlbum.id}
+      />
+    ));
+  }
 
   return (
     <GridContainer>
       <GridLeft
-        name={getAlbum.name}
-        owner={getAlbum.artists}
-        description={`${getAlbum.releaseDate} • ${getAlbum.totalTracks} songs`}
-        image={getAlbum.image}
+        name={getAlbum ? getAlbum.name : undefined}
+        owner={getAlbum ? getAlbum.artists : undefined}
+        description={
+          getAlbum
+            ? `${getAlbum.releaseDate} • ${getAlbum.totalTracks} songs`
+            : undefined
+        }
+        image={getAlbum ? getAlbum.image : undefined}
       ></GridLeft>
-      <GridRight>{trackElements ? trackElements : null}</GridRight>
+      <GridRight>{trackElements ? trackElements : undefined}</GridRight>
     </GridContainer>
   );
 };

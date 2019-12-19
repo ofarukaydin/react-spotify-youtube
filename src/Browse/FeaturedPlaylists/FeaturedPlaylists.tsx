@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import CardMedia from "../../CardMedia/CardMedia";
 import Spotify from "../../Spotify/Spotify";
-import GridCardContainer from "../../GridContainer/GridCardContainer/GridCardContainer"
+import GridCardContainer from "../../GridContainer/GridCardContainer/GridCardContainer";
+import { Playlist } from "../../Spotify/interfaces";
 
-const Categories = props => {
-  const [getFeaturedPlaylists, setFeaturedPlaylists] = useState([]);
+const Categories = () => {
+  const [getFeaturedPlaylists, setFeaturedPlaylists] = useState<Playlist[]>([]);
 
   useEffect(() => {
     (async () => {
@@ -21,8 +22,7 @@ const Categories = props => {
       name: playlist.name,
       owner: playlist.owner.display_name,
       ownerId: playlist.owner.id,
-      description: playlist.description,
-      primary_color: playlist.primary_color
+      description: playlist.description
     };
   });
 
@@ -37,7 +37,7 @@ const Categories = props => {
 
   return (
     <>
-      <h1 style={{marginLeft: "30px"}}>Editor's picks</h1>
+      <h1 style={{ marginLeft: "30px" }}>Editor's picks</h1>
 
       <GridCardContainer>{playlistCards}</GridCardContainer>
     </>

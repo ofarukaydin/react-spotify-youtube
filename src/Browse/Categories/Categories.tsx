@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import CardMedia from "../../CardMedia/CardMedia";
 import Spotify from "../../Spotify/Spotify";
-import GridCardContainer from "../../GridContainer/GridCardContainer/GridCardContainer"
+import GridCardContainer from "../../GridContainer/GridCardContainer/GridCardContainer";
+import { Category } from "../../Spotify/interfaces";
 
-const Categories = props => {
-  const [getCategories, setCategories] = useState([]);
+const Categories = () => {
+  const [getCategories, setCategories] = useState<Category[]>([]);
 
   useEffect(() => {
     (async () => {
@@ -38,7 +39,7 @@ const Categories = props => {
 
   return (
     <>
-      <h1 style={{marginLeft: "30px"}}>Genres & Moods</h1>
+      <h1 style={{ marginLeft: "30px" }}>Genres & Moods</h1>
       <GridCardContainer>{categoryCards}</GridCardContainer>
     </>
   );
