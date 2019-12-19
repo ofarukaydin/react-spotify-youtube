@@ -1,6 +1,6 @@
-import React, { MouseEventHandler } from "react";
+import React from "react";
 import { hot } from "react-hot-loader";
-import ReactPlayer, { ReactPlayerProps } from "react-player";
+import ReactPlayer from "react-player";
 import Duration from "./Duration";
 import "./Player.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,10 +14,26 @@ import {
   faPlayCircle,
   faPauseCircle
 } from "@fortawesome/free-regular-svg-icons";
-import { connect } from "react-redux";
-import * as actions from "../store/actions/player";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  handleDuration,
+  handleEnded,
+  pause,
+  play,
+  playPause,
+  seekChange,
+  seekMouseDown,
+  seekMouseUp,
+  toggleMuted,
+  volumeChange,
+  handleProgress
+} from "../store/reducers/playerReducer";
+import { RootState } from "../store/reducers/rootReducer";
 
-const Player = (props: ReactPlayerProps) => {
+const Player = () => {
+  const dispatch = useDispatch();
+  const playerState = useSelector((state: RootState) => state.player);
+
   const {
     url,
     playing,
@@ -30,25 +46,26 @@ const Player = (props: ReactPlayerProps) => {
     playbackRate,
     pip,
     duration,
-    loading
-  } = props.player;
+    loading,
+    seeking
+  } = playerState;
 
   const handleSeekMouseUp = (
     event: React.MouseEvent<HTMLInputElement>
   ): void => {
-    props.onSeekMouseUp();
+    dispatch(seekMouseUp());
     player.seekTo(parseFloat(event.currentTarget.value));
   };
 
-  const handleProgress = (state: {
+  const handlePlayerProgress = (state: {
     played: number;
     playedSeconds: number;
     loaded: number;
     loadedSeconds: number;
   }) => {
     // We only want to update time slider if we are not currently seeking
-    if (!props.player.seeking) {
-      props.onHandleProgress(state);
+    if (!seeking) {
+      dispatch(handleProgress(state));
     }
   };
   let player: ReactPlayer;
@@ -74,20 +91,20 @@ const Player = (props: ReactPlayerProps) => {
           muted={muted}
           onReady={() => console.log("onReady")}
           onStart={() => console.log("onStart")}
-          onPlay={props.onPlay}
-          onPause={props.onPause}
+          onPlay={play}
+          onPause={pause}
           onBuffer={() => console.log("onBuffer")}
           onSeek={e => console.log("onSeek", e)}
-          onEnded={props.onHandleEnded}
+          onEnded={() => dispatch(handleEnded())}
           onError={e => console.log("onError", e)}
-          onProgress={handleProgress}
-          onDuration={duration => props.onHandleDuration({ duration })}
+          onProgress={handlePlayerProgress}
+          onDuration={duration => dispatch(handleDuration({ duration }))}
         />
         <div className="midcontainer">
           <div className="playcontrols">
             <FontAwesomeIcon style={{ margin: "10px" }} icon={faStepBackward} />
             <FontAwesomeIcon
-              onClick={props.onPlayPause}
+              onClick={e => dispatch(playPause())}
               style={{ fontSize: "40px" }}
               icon={playing ? faPauseCircle : faPlayCircle}
               spin={loading}
@@ -104,9 +121,9 @@ const Player = (props: ReactPlayerProps) => {
                 max={1}
                 step="any"
                 value={played}
-                onMouseDown={props.onSeekMouseDown}
+                onMouseDown={e => dispatch(seekMouseDown())}
                 onChange={e => {
-                  props.onSeekChange(parseFloat(e.target.value));
+                  dispatch(seekChange(parseFloat(e.target.value)));
                 }}
                 onMouseUp={handleSeekMouseUp}
               />
@@ -119,7 +136,7 @@ const Player = (props: ReactPlayerProps) => {
           <FontAwesomeIcon
             style={{ margin: "5px" }}
             icon={muted ? faVolumeMute : faVolumeUp}
-            onClick={props.onToggleMuted}
+            onClick={toggleMuted}
           />
           <div style={{ marginRight: "15px" }}>
             <input
@@ -130,7 +147,7 @@ const Player = (props: ReactPlayerProps) => {
               step="any"
               value={volume}
               onChange={e => {
-                props.onVolumeChange(parseFloat(e.target.value));
+                dispatch(volumeChange(parseFloat(e.target.value)));
               }}
             />
           </div>
@@ -140,33 +157,4 @@ const Player = (props: ReactPlayerProps) => {
   );
 };
 
-const mapStateToProps = (state: { player: any }) => {
-  return {
-    player: state.player
-  };
-};
-
-const mapDispatchToProps = (
-  dispatch: (arg0: { type: string; url?: any; value?: any }) => any
-) => {
-  return {
-    onSetTrack: (url: any) => dispatch(actions.setTrack(url)),
-    onPlayPause: () => dispatch(actions.playPause()),
-    onToggleLoop: () => dispatch(actions.toggleLoop()),
-    onVolumeChange: (value: any) => dispatch(actions.volumeChange(value)),
-    onToggleMuted: () => dispatch(actions.toggleMuted()),
-    onPlay: () => dispatch(actions.play()),
-    onPause: () => dispatch(actions.pause()),
-    onSeekMouseDown: () => dispatch(actions.seekMouseDown()),
-    onSeekChange: (value: any) => dispatch(actions.seekChange(value)),
-    onSeekMouseUp: () => dispatch(actions.seekMouseUp()),
-    onHandleProgress: (value: any) => dispatch(actions.handleProgress(value)),
-    onHandleEnded: () => dispatch(actions.handleEnded()),
-    onHandleDuration: (value: any) => dispatch(actions.handleDuration(value))
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(hot(module)(Player));
+export default hot(module)(Player);

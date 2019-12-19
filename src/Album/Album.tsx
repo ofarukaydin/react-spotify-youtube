@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Spotify from "../Spotify/Spotify";
-import Track from "../Sidenav/Playlists/Tracks/Track/Track";
+import Track from "../Tracks/Track/Track";
 import GridContainer from "../GridContainer/GridContainer";
 import GridLeft from "../GridContainer/GridLeft/GridLeft";
 import GridRight from "../GridContainer/GridRight/GridRight";
@@ -16,7 +16,6 @@ type AlbumState = {
 };
 
 type AlbumTracksState = {
-  title: string;
   artists: {
     name: string;
     id: string;
@@ -49,7 +48,6 @@ const Album = () => {
         });
 
         return {
-          title: trackElement.name,
           artists: artistList,
           name: trackElement.name,
           duration: trackElement.duration_ms,
@@ -66,7 +64,7 @@ const Album = () => {
     trackElements = getAlbumTracks.map(track => (
       <Track
         key={track.id}
-        title={track.title}
+        name={track.name}
         artists={track.artists}
         album={getAlbum.name}
         duration={track.duration}

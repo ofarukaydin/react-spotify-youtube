@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import Spotify from "../../../Spotify/Spotify";
+import Spotify from "../Spotify/Spotify";
 import { useParams } from "react-router-dom";
 import Track from "./Track/Track";
 import "./Tracks.css";
-import GridContainer from "../../../GridContainer/GridContainer";
-import GridLeft from "../../../GridContainer/GridLeft/GridLeft";
-import GridRight from "../../../GridContainer/GridRight/GridRight";
+import GridContainer from "../GridContainer/GridContainer";
+import GridLeft from "../GridContainer/GridLeft/GridLeft";
+import GridRight from "../GridContainer/GridRight/GridRight";
 
 type PlaylistDetailsState = {
   images: string;
@@ -17,16 +17,11 @@ type PlaylistDetailsState = {
 };
 
 type PlaylistTracksState = {
-  title: string;
-  artists:
-    | {
-        name: string;
-        id: string;
-      }[]
-    | {
-        name: string;
-        id: string;
-      };
+  name: string;
+  artists: {
+    name: string;
+    id: string;
+  }[];
   album: string;
   duration: number;
   addedAt: string;
@@ -58,14 +53,12 @@ const Tracks = () => {
       let tracks = await Spotify.getTracks(params.playlistId);
       if (tracks) {
         const tracksList = tracks.items.map(trackElement => {
-          const artistList = trackElement.track.artists
-            ? trackElement.track.artists.map(artistElement => {
-                return { name: artistElement.name, id: artistElement.id };
-              })
-            : { name: "", id: "" };
+          const artistList = trackElement.track.artists.map(artistElement => {
+            return { name: artistElement.name, id: artistElement.id };
+          });
 
           return {
-            title: trackElement.track.name,
+            name: trackElement.track.name,
             artists: artistList,
             album: trackElement.track.album.name,
             duration: trackElement.track.duration_ms,
@@ -81,7 +74,7 @@ const Tracks = () => {
   const trackElements = getPlaylistTracks.map(track => (
     <Track
       key={track.id}
-      title={track.title}
+      name={track.name}
       addedAt={track.addedAt}
       artists={track.artists}
       album={track.album}

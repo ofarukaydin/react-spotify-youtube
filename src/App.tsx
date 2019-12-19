@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
-import Tracks from "./Sidenav/Playlists/Tracks/Tracks";
+import Tracks from "./Tracks/Tracks";
 import Layout from "./Layout/Layout";
 import Album from "./Album/Album";
 import Browse from "./Browse/Browse";

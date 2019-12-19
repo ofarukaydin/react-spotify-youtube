@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Spotify from "../Spotify/Spotify";
 import { useParams } from "react-router-dom";
-import Track from "../Sidenav/Playlists/Tracks/Track/Track";
+import Track from "../Tracks/Track/Track";
 import CardMedia from "../CardMedia/CardMedia";
 import GridCardContainer from "../GridContainer/GridCardContainer/GridCardContainer";
 import GridContainer from "../GridContainer/GridContainer";
@@ -9,7 +9,7 @@ import GridLeft from "../GridContainer/GridLeft/GridLeft";
 import GridRight from "../GridContainer/GridRight/GridRight";
 
 type PopularTracksState = {
-  title: string;
+  name: string;
   artists: {
     name: string;
     id: string;
@@ -58,7 +58,7 @@ const Artist = () => {
         });
 
         return {
-          title: trackElement.name,
+          name: trackElement.name,
           artists: artistList,
           album: trackElement.album.name,
           duration: trackElement.duration_ms,
@@ -100,7 +100,7 @@ const Artist = () => {
   const popularTracks = getPopularTracks.map(track => (
     <Track
       key={track.id}
-      title={track.title}
+      name={track.name}
       artists={track.artists}
       album={track.album}
       duration={track.duration}

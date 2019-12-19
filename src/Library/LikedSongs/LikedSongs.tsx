@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Spotify from "../../Spotify/Spotify";
-import Track from "../../Sidenav/Playlists/Tracks/Track/Track";
+import Track from "../../Tracks/Track/Track";
 import GridContainer from "../../GridContainer/GridContainer";
 import GridRight from "../../GridContainer/GridRight/GridRight";
 import GridLeft from "../../GridContainer/GridLeft/GridLeft";
 
 type SetLikedSongs = {
-  title: string;
+  name: string;
   id: string;
   artists: {
     name: string;
@@ -33,7 +33,7 @@ const LikedSongs = () => {
         });
 
         return {
-          title: trackElement.track.name,
+          name: trackElement.track.name,
           artists: artistList,
           album: trackElement.track.album.name,
           duration: trackElement.track.duration_ms,
@@ -49,8 +49,7 @@ const LikedSongs = () => {
   const trackElements = getLikedSongs.map(track => (
     <Track
       key={track.id}
-      title={track.title}
-      addedAt={track.addedAt}
+      name={track.name}
       artists={track.artists}
       album={track.album}
       duration={track.duration}

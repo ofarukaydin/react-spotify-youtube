@@ -2,7 +2,7 @@ import React, { useEffect, useState, useReducer, useRef } from "react";
 import Spotify from "../Spotify/Spotify";
 import GridCardContainer from "../GridContainer/GridCardContainer/GridCardContainer";
 import CardMedia from "../CardMedia/CardMedia";
-import Track from "../Sidenav/Playlists/Tracks/Track/Track";
+import Track from "../Tracks/Track/Track";
 import "./Search.css";
 
 import {
@@ -106,7 +106,7 @@ const Search = () => {
   let tracksList = getSearchResults.tracks.map(track => (
     <Track
       key={track.id}
-      title={track.name}
+      name={track.name}
       artists={track.artists}
       album={track.album}
       duration={track.duration}
