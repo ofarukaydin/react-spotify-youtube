@@ -1,6 +1,6 @@
 import React from "react";
 
-const Duration = (props: { className: string; seconds: number }) => {
+const Duration = (props: { className?: string; seconds: number }) => {
   return (
     <time
       dateTime={`P${Math.round(props.seconds)}S`}
