@@ -3,6 +3,20 @@
 [ss]: https://github.com/hayspat/react-spotify-youtube/raw/master/Screenshot%20from%202019-12-09%2017-16-33.png "Logo Title Text 2" 
 ![alt text][ss]
 
+## Installation
+You must have docker installed and enter your Spotify API Client ID in .env file.
+
+```
+git clone https://github.com/hayspat/react-spotify-youtube.git
+cd react-spotify-youtube/docker
+sudo docker build -t myimage .
+sudo docker run -d --name mycontainer -p 2000:80 myimage
+cd ..
+npm install
+npm start
+
+```
+
 ## What's the purpose of this package?
 
 This is a spotify clone that uses youtube as backend. Playlists, categories etc all fetched from Spotify API. Only tracks are played by youtube.
