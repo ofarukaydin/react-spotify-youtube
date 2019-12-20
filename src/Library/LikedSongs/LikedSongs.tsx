@@ -46,9 +46,9 @@ const LikedSongs = () => {
     })();
   }, []);
 
-  const trackElements = getLikedSongs.map(track => (
+  const trackElements = getLikedSongs.map((track, index) => (
     <Track
-      key={track.id}
+      key={index}
       name={track.name}
       artists={track.artists}
       album={track.album}

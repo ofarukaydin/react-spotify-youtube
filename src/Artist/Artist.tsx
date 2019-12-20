@@ -97,9 +97,9 @@ const Artist = () => {
       setArtistsAlbums(albumList);
     })();
   }, [params]);
-  const popularTracks = getPopularTracks.map(track => (
+  const popularTracks = getPopularTracks.map((track, index) => (
     <Track
-      key={track.id}
+      key={index}
       name={track.name}
       artists={track.artists}
       album={track.album}

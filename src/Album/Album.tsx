@@ -61,9 +61,9 @@ const Album = () => {
   let trackElements;
 
   if (getAlbum) {
-    trackElements = getAlbumTracks.map(track => (
+    trackElements = getAlbumTracks.map((track, index) => (
       <Track
-        key={track.id}
+        key={index}
         name={track.name}
         artists={track.artists}
         album={getAlbum.name}

@@ -82,6 +82,7 @@ const Search = () => {
 
   let artistList = getSearchResults.artists.map(artist => (
     <CardMedia
+      key={artist.id}
       url={`/artists/${artist.id}`}
       image={artist.image}
       title={artist.name}
@@ -91,6 +92,7 @@ const Search = () => {
 
   let playlistsList = getSearchResults.playlists.map(playlist => (
     <CardMedia
+      key={playlist.id}
       url={`/playlists/${playlist.id}`}
       image={playlist.image}
       title={playlist.name}
@@ -98,14 +100,15 @@ const Search = () => {
   ));
   let albumsList = getSearchResults.albums.map(album => (
     <CardMedia
+      key={album.id}
       url={`/albums/${album.id}`}
       image={album.image}
       title={album.name}
     />
   ));
-  let tracksList = getSearchResults.tracks.map(track => (
+  let tracksList = getSearchResults.tracks.map((track, index) => (
     <Track
-      key={track.id}
+      key={index}
       name={track.name}
       artists={track.artists}
       album={track.album}

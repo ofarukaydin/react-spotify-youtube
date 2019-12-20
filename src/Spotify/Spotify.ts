@@ -232,7 +232,6 @@ const Spotify = {
         }
       );
       const jsonResponse: GetTracks = await response.json();
-      console.log(jsonResponse);
       return jsonResponse;
     }
   },

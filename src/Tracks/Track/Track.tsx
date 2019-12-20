@@ -31,23 +31,16 @@ const Track = (props: PropTypes) => {
   const player = useSelector((state: RootState) => state.player);
   const currentTrack = useSelector((state: RootState) => state.currentTrack);
 
-  const artistList = props.artists.map(
-    (
-      artist: { id: string | number | undefined; name: React.ReactNode },
-      index: number
-    ) => {
-      return (
-        <Link key={artist.id} to={`/artists/${artist.id}`}>
-          {artist.name}
-          {props.artists.length - 1 === index ? "" : ", "}
-        </Link>
-      );
-    }
-  );
+  const artistList = props.artists.map((artist, index) => {
+    return (
+      <Link key={artist.id} to={`/artists/${artist.id}`}>
+        {artist.name}
+        {props.artists.length - 1 === index ? "" : ", "}
+      </Link>
+    );
+  });
 
-  const artistNames = props.artists
-    .map((artist: { name: any }) => artist.name)
-    .join(", ");
+  const artistNames = props.artists.map(artist => artist.name).join(", ");
 
   const handleClick = () => {
     if (currentTrack.duration === props.duration) {

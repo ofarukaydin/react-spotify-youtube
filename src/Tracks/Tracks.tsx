@@ -52,11 +52,13 @@ const Tracks = () => {
       });
       let tracks = await Spotify.getTracks(params.playlistId);
       if (tracks) {
-        const tracksList = tracks.items.map(trackElement => {
+        const filteredTrackList = tracks.items.filter(
+          track => track.track !== null
+        );
+        const tracksList = filteredTrackList.map(trackElement => {
           const artistList = trackElement.track.artists.map(artistElement => {
             return { name: artistElement.name, id: artistElement.id };
           });
-
           return {
             name: trackElement.track.name,
             artists: artistList,
@@ -71,9 +73,9 @@ const Tracks = () => {
       }
     })();
   }, [params.playlistId]);
-  const trackElements = getPlaylistTracks.map(track => (
+  const trackElements = getPlaylistTracks.map((track, index) => (
     <Track
-      key={track.id}
+      key={index}
       name={track.name}
       addedAt={track.addedAt}
       artists={track.artists}
