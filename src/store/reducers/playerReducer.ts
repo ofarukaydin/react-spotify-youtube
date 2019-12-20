@@ -121,8 +121,9 @@ export const getUrl = (
   title: string
 ): AppThunk => async dispatch => {
   dispatch(getUrlStart());
+  let backendUrl = process.env.REACT_APP_SPOTIFY_BACKEND_URL;
   axios
-    .get("http://localhost/search?q=" + artists + " " + title)
+    .get(backendUrl + "/search?q=" + artists + " " + title)
     .then((res: AxiosResponse) => {
       const url = res.data.url;
       dispatch(getUrlSuccess());

@@ -18,9 +18,9 @@ import {
 
 let spotifyAccesToken = "";
 // Please provide the client ID of your Spotify App.
-const clientId = "5bcff691b8a04bac809e087d8a0ce7f9";
+const clientId = process.env.REACT_APP_SPOTIFY_ID;
 //Please provide the redirect URI added in your Spotify App while registration.
-const redirectUri = "http://localhost:3000/";
+const redirectUri = process.env.REACT_APP_SPOTIFY_REDIRECT_URI;
 
 const Spotify = {
   // Get the access token using authorize API from Sportify.
