@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import "@testing-library/jest-dom/extend-expect";
 import { createMemoryHistory } from "history";
 import { Router } from "react-router-dom";
@@ -8,15 +8,18 @@ import { store as reduxStore } from "../store/store";
 import sinon from "sinon";
 
 export function renderWithRouterAndRedux(
-  ui,
+  ui: JSX.Element,
   {
     route = "/",
     history = createMemoryHistory({ initialEntries: [route] })
+  }: {
+    route?: string;
+    history?: any;
   } = {}
 ) {
   sinon.stub(window.location, "assign");
   sinon.stub(window.location, "replace");
-  const Wrapper = ({ children }) => (
+  const Wrapper = ({ children }: { children?: ReactNode }) => (
     <Provider store={reduxStore}>
       <Router history={history}>{children}</Router>
     </Provider>
