@@ -4,7 +4,7 @@
 ![alt text][ss]
 
 ## Installation
-You must have docker installed and enter your Spotify API Client ID in .env file.
+You must have docker installed. Enter your Spotify API Client ID in .env file and add redirect uri in spotify api console.
 
 ```
 git clone https://github.com/hayspat/react-spotify-youtube.git
