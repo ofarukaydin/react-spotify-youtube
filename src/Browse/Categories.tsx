@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import CardMedia from "../../CardMedia/CardMedia";
-import Spotify from "../../Spotify/Spotify";
-import GridCardContainer from "../../GridContainer/GridCardContainer/GridCardContainer";
-import { Category } from "../../Spotify/interfaces";
+import CardMedia from "../CardMedia/CardMedia";
+import Spotify from "../Spotify/Spotify";
+import GridCardContainer from "../GridContainer/GridCardContainer";
+import { Category } from "../Spotify/interfaces";
 
 const Categories = () => {
   const [getCategories, setCategories] = useState<Category[]>([]);

@@ -42,6 +42,7 @@ const Spotify = {
       window.location.href = `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${encodeURIComponent(
         scopes
       )}&response_type=token`;
+      return "";
     }
   },
 
@@ -198,42 +199,39 @@ const Spotify = {
 
   async getPlayList() {
     const token = this.getAccessToken();
-    if (token) {
-      const userId = await this.getUserId(token);
-      const headers = {
-        Authorization: `Bearer ${token}`,
-        "content-type": "application/json"
-      };
-      const response = await fetch(
-        `https://api.spotify.com/v1/users/${userId}/playlists`,
-        {
-          headers: headers,
-          method: "GET"
-        }
-      );
-      const jsonResponse: ISearch["playlists"] = await response.json();
-      return jsonResponse;
-    }
+    const userId = await this.getUserId(token);
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      "content-type": "application/json"
+    };
+    const response = await fetch(
+      `https://api.spotify.com/v1/users/${userId}/playlists`,
+      {
+        headers: headers,
+        method: "GET"
+      }
+    );
+    const jsonResponse: ISearch["playlists"] = await response.json();
+    return jsonResponse;
   },
 
   async getTracks(id: string) {
     const token = this.getAccessToken();
-    if (token) {
-      const userId = await this.getUserId(token);
-      const headers = {
-        Authorization: `Bearer ${token}`,
-        "content-type": "application/json"
-      };
-      const response = await fetch(
-        `https://api.spotify.com/v1/users/${userId}/playlists/${id}/tracks`,
-        {
-          headers: headers,
-          method: "GET"
-        }
-      );
-      const jsonResponse: GetTracks = await response.json();
-      return jsonResponse;
-    }
+
+    const userId = await this.getUserId(token);
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      "content-type": "application/json"
+    };
+    const response = await fetch(
+      `https://api.spotify.com/v1/users/${userId}/playlists/${id}/tracks`,
+      {
+        headers: headers,
+        method: "GET"
+      }
+    );
+    const jsonResponse: GetTracks = await response.json();
+    return jsonResponse;
   },
 
   async getCategories() {

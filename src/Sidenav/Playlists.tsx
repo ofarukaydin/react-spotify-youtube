@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Playlist from "./Playlist/Playlist";
-import Spotify from "../../Spotify/Spotify";
+import Playlist from "./Playlist";
+import Spotify from "../Spotify/Spotify";
 
 type PlaylistsState = {
   name: string;

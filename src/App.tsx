@@ -4,15 +4,15 @@ import Tracks from "./Tracks/Tracks";
 import Layout from "./Layout/Layout";
 import Album from "./Album/Album";
 import Browse from "./Browse/Browse";
-import NewReleases from "./Browse/NewReleases/NewReleases";
-import FeaturedPlaylists from "./Browse/FeaturedPlaylists/FeaturedPlaylists";
-import Categories from "./Browse/Categories/Categories";
-import CategoryPlaylists from "./Browse/CategoryPlaylists/CategoryPlaylist";
+import NewReleases from "./Browse/NewReleases";
+import FeaturedPlaylists from "./Browse/FeaturedPlaylists";
+import Categories from "./Browse/Categories";
+import CategoryPlaylists from "./Browse/CategoryPlaylist";
 import Artist from "./Artist/Artist";
 import Library from "./Library/Library";
-import Albums from "./Library/Albums/Albums";
-import Playlists from "./Library/Playlists/Playlists";
-import LikedSongs from "./Library/LikedSongs/LikedSongs";
+import Albums from "./Library/SavedAlbums";
+import Playlists from "./Library/Playlists";
+import LikedSongs from "./Library/LikedSongs";
 import Search from "./Search/Search";
 
 const App = (): JSX.Element => {

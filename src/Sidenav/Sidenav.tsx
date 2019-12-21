@@ -1,5 +1,5 @@
 import React from "react";
-import Playlists from "./Playlists/Playlists";
+import Playlists from "./Playlists";
 import "./Sidenav.css";
 import { NavLink } from "react-router-dom";
 

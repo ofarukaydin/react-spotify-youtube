@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Spotify from "../Spotify/Spotify";
 import { useParams } from "react-router-dom";
-import Track from "../Tracks/Track/Track";
+import Track from "../Tracks/Track";
 import CardMedia from "../CardMedia/CardMedia";
-import GridCardContainer from "../GridContainer/GridCardContainer/GridCardContainer";
+import GridCardContainer from "../GridContainer/GridCardContainer";
 import GridContainer from "../GridContainer/GridContainer";
-import GridLeft from "../GridContainer/GridLeft/GridLeft";
-import GridRight from "../GridContainer/GridRight/GridRight";
+import GridLeft from "../GridContainer/GridLeft";
+import GridRight from "../GridContainer/GridRight";
 
 type PopularTracksState = {
   name: string;

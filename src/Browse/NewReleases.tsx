@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import CardMedia from "../../CardMedia/CardMedia";
-import Spotify from "../../Spotify/Spotify";
-import GridCardContainer from "../../GridContainer/GridCardContainer/GridCardContainer";
+import CardMedia from "../CardMedia/CardMedia";
+import Spotify from "../Spotify/Spotify";
+import GridCardContainer from "../GridContainer/GridCardContainer";
 
 type NewReleasesState = {
   name: string;
@@ -13,13 +13,12 @@ type NewReleasesState = {
   image: string;
 };
 
-const Categories = () => {
+const NewReleases = () => {
   const [getNewReleases, setNewReleases] = useState<NewReleasesState[]>([]);
 
   useEffect(() => {
     (async () => {
       let newReleases = await Spotify.getNewReleases();
-
       const newList = newReleases.albums.items.map(newElement => {
         const artistList = newElement.artists.map(artistElement => {
           return artistElement.name;
@@ -58,4 +57,4 @@ const Categories = () => {
   );
 };
 
-export default Categories;
+export default NewReleases;

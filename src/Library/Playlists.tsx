@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Spotify from "../../Spotify/Spotify";
-import CardMedia from "../../CardMedia/CardMedia";
-import GridCardContainer from "../../GridContainer/GridCardContainer/GridCardContainer";
-import { ISearch } from "../../Spotify/interfaces";
+import Spotify from "../Spotify/Spotify";
+import CardMedia from "../CardMedia/CardMedia";
+import GridCardContainer from "../GridContainer/GridCardContainer";
+import { ISearch } from "../Spotify/interfaces";
 
 const Playlists = () => {
   const [getPlaylists, setPlaylists] = useState<ISearch["playlists"]["items"]>(

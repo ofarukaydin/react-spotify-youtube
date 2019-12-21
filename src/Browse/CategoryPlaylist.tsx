@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import CardMedia from "../../CardMedia/CardMedia";
-import Spotify from "../../Spotify/Spotify";
+import CardMedia from "../CardMedia/CardMedia";
+import Spotify from "../Spotify/Spotify";
 import { useLocation } from "react-router";
-import GridCardContainer from "../../GridContainer/GridCardContainer/GridCardContainer";
-import { Playlist } from "../../Spotify/interfaces";
+import GridCardContainer from "../GridContainer/GridCardContainer";
+import { Playlist } from "../Spotify/interfaces";
 
 const CategoryPlaylists = () => {
   const [getCategoryPlaylists, setCategoryPlaylists] = useState<Playlist[]>([]);
@@ -41,7 +41,9 @@ const CategoryPlaylists = () => {
 
   return (
     <>
-      <h1 style={{ marginLeft: "30px" }}>{location.state.categoryName}</h1>
+      <h1 style={{ marginLeft: "30px" }}>
+        {location.state ? location.state.categoryName : ""}
+      </h1>
       <GridCardContainer>{playlistCards}</GridCardContainer>
     </>
   );

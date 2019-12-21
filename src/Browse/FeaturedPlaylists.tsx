@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import CardMedia from "../../CardMedia/CardMedia";
-import Spotify from "../../Spotify/Spotify";
-import GridCardContainer from "../../GridContainer/GridCardContainer/GridCardContainer";
-import { Playlist } from "../../Spotify/interfaces";
+import CardMedia from "../CardMedia/CardMedia";
+import Spotify from "../Spotify/Spotify";
+import GridCardContainer from "../GridContainer/GridCardContainer";
+import { Playlist } from "../Spotify/interfaces";
 
-const Categories = () => {
+const FeaturedPlaylists = () => {
   const [getFeaturedPlaylists, setFeaturedPlaylists] = useState<Playlist[]>([]);
 
   useEffect(() => {
@@ -44,4 +44,4 @@ const Categories = () => {
   );
 };
 
-export default Categories;
+export default FeaturedPlaylists;

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Spotify from "../Spotify/Spotify";
-import Track from "../Tracks/Track/Track";
+import Track from "../Tracks/Track";
 import GridContainer from "../GridContainer/GridContainer";
-import GridLeft from "../GridContainer/GridLeft/GridLeft";
-import GridRight from "../GridContainer/GridRight/GridRight";
+import GridLeft from "../GridContainer/GridLeft";
+import GridRight from "../GridContainer/GridRight";
 
 type AlbumState = {
   image: string;

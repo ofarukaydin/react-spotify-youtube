@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Spotify from "../../Spotify/Spotify";
-import CardMedia from "../../CardMedia/CardMedia";
-import GridCardContainer from "../../GridContainer/GridCardContainer/GridCardContainer";
-import { SavedAlbums } from "../../Spotify/interfaces";
+import Spotify from "../Spotify/Spotify";
+import CardMedia from "../CardMedia/CardMedia";
+import GridCardContainer from "../GridContainer/GridCardContainer";
+import { SavedAlbums } from "../Spotify/interfaces";
 
 const Albums = () => {
   const [getSavedAlbums, setSavedAlbums] = useState<SavedAlbums["items"]>([]);

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Spotify from "../Spotify/Spotify";
 import { useParams } from "react-router-dom";
-import Track from "./Track/Track";
+import Track from "./Track";
 import "./Tracks.css";
 import GridContainer from "../GridContainer/GridContainer";
-import GridLeft from "../GridContainer/GridLeft/GridLeft";
-import GridRight from "../GridContainer/GridRight/GridRight";
+import GridLeft from "../GridContainer/GridLeft";
+import GridRight from "../GridContainer/GridRight";
 
 type PlaylistDetailsState = {
   images: string;

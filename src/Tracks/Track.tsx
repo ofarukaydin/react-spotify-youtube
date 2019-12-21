@@ -6,12 +6,9 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { playPause, getUrl } from "../../store/reducers/playerReducer";
-import {
-  setCurrentTrack,
-  CurrentTrack
-} from "../../store/reducers/tracksReducer";
-import { RootState } from "../../store/reducers/rootReducer";
+import { playPause, getUrl } from "../store/reducers/playerReducer";
+import { setCurrentTrack, CurrentTrack } from "../store/reducers/tracksReducer";
+import { RootState } from "../store/reducers/rootReducer";
 
 type PropTypes = {
   artists: {

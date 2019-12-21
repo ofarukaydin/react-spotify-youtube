@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import Spotify from "../../Spotify/Spotify";
-import Track from "../../Tracks/Track/Track";
-import GridContainer from "../../GridContainer/GridContainer";
-import GridRight from "../../GridContainer/GridRight/GridRight";
-import GridLeft from "../../GridContainer/GridLeft/GridLeft";
+import Spotify from "../Spotify/Spotify";
+import Track from "../Tracks/Track";
+import GridContainer from "../GridContainer/GridContainer";
+import GridRight from "../GridContainer/GridRight";
+import GridLeft from "../GridContainer/GridLeft";
 
 type SetLikedSongs = {
   name: string;

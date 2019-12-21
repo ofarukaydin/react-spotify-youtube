@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useReducer, useRef } from "react";
 import Spotify from "../Spotify/Spotify";
-import GridCardContainer from "../GridContainer/GridCardContainer/GridCardContainer";
+import GridCardContainer from "../GridContainer/GridCardContainer";
 import CardMedia from "../CardMedia/CardMedia";
-import Track from "../Tracks/Track/Track";
+import Track from "../Tracks/Track";
 import "./Search.css";
 
 import {
@@ -123,6 +123,7 @@ const Search = () => {
       <div className="box">
         <div className="container-1">
           <input
+            data-testid="searchinput"
             ref={inputRef}
             value={searchValue}
             onChange={event => setSearchValue(event.target.value)}
