@@ -6,12 +6,12 @@ export const mockedTracksData = {
       added_at: "2015-10-26T11:51:04Z",
       added_by: {
         external_urls: {
-          spotify: "https://open.spotify.com/user/hayspat"
+          spotify: "https://open.spotify.com/user/test"
         },
-        href: "https://api.spotify.com/v1/users/hayspat",
-        id: "hayspat",
+        href: "https://api.spotify.com/v1/users/test",
+        id: "test",
         type: "user",
-        uri: "spotify:user:hayspat"
+        uri: "spotify:user:test"
       },
       is_local: false,
       primary_color: null,
@@ -240,12 +240,12 @@ export const mockedTracksData = {
       added_at: "2015-10-26T11:51:26Z",
       added_by: {
         external_urls: {
-          spotify: "https://open.spotify.com/user/hayspat"
+          spotify: "https://open.spotify.com/user/test"
         },
-        href: "https://api.spotify.com/v1/users/hayspat",
-        id: "hayspat",
+        href: "https://api.spotify.com/v1/users/test",
+        id: "test",
         type: "user",
-        uri: "spotify:user:hayspat"
+        uri: "spotify:user:test"
       },
       is_local: false,
       primary_color: null,
@@ -540,12 +540,12 @@ export const mockedTracksData = {
       added_at: "2015-10-26T11:51:43Z",
       added_by: {
         external_urls: {
-          spotify: "https://open.spotify.com/user/hayspat"
+          spotify: "https://open.spotify.com/user/test"
         },
-        href: "https://api.spotify.com/v1/users/hayspat",
-        id: "hayspat",
+        href: "https://api.spotify.com/v1/users/test",
+        id: "test",
         type: "user",
-        uri: "spotify:user:hayspat"
+        uri: "spotify:user:test"
       },
       is_local: false,
       primary_color: null,
@@ -821,12 +821,12 @@ export const mockedTracksData = {
       added_at: "2015-10-26T11:53:34Z",
       added_by: {
         external_urls: {
-          spotify: "https://open.spotify.com/user/hayspat"
+          spotify: "https://open.spotify.com/user/test"
         },
-        href: "https://api.spotify.com/v1/users/hayspat",
-        id: "hayspat",
+        href: "https://api.spotify.com/v1/users/test",
+        id: "test",
         type: "user",
-        uri: "spotify:user:hayspat"
+        uri: "spotify:user:test"
       },
       is_local: false,
       primary_color: null,
@@ -1082,12 +1082,12 @@ export const mockedTracksData = {
       added_at: "2015-10-26T11:53:39Z",
       added_by: {
         external_urls: {
-          spotify: "https://open.spotify.com/user/hayspat"
+          spotify: "https://open.spotify.com/user/test"
         },
-        href: "https://api.spotify.com/v1/users/hayspat",
-        id: "hayspat",
+        href: "https://api.spotify.com/v1/users/test",
+        id: "test",
         type: "user",
-        uri: "spotify:user:hayspat"
+        uri: "spotify:user:test"
       },
       is_local: false,
       primary_color: null,
@@ -1192,12 +1192,12 @@ export const mockedTracksData = {
       added_at: "2015-10-26T11:54:00Z",
       added_by: {
         external_urls: {
-          spotify: "https://open.spotify.com/user/hayspat"
+          spotify: "https://open.spotify.com/user/test"
         },
-        href: "https://api.spotify.com/v1/users/hayspat",
-        id: "hayspat",
+        href: "https://api.spotify.com/v1/users/test",
+        id: "test",
         type: "user",
-        uri: "spotify:user:hayspat"
+        uri: "spotify:user:test"
       },
       is_local: false,
       primary_color: null,
@@ -1453,12 +1453,12 @@ export const mockedTracksData = {
       added_at: "2015-10-26T11:54:26Z",
       added_by: {
         external_urls: {
-          spotify: "https://open.spotify.com/user/hayspat"
+          spotify: "https://open.spotify.com/user/test"
         },
-        href: "https://api.spotify.com/v1/users/hayspat",
-        id: "hayspat",
+        href: "https://api.spotify.com/v1/users/test",
+        id: "test",
         type: "user",
-        uri: "spotify:user:hayspat"
+        uri: "spotify:user:test"
       },
       is_local: false,
       primary_color: null,
@@ -1714,12 +1714,12 @@ export const mockedTracksData = {
       added_at: "2015-10-26T11:55:17Z",
       added_by: {
         external_urls: {
-          spotify: "https://open.spotify.com/user/hayspat"
+          spotify: "https://open.spotify.com/user/test"
         },
-        href: "https://api.spotify.com/v1/users/hayspat",
-        id: "hayspat",
+        href: "https://api.spotify.com/v1/users/test",
+        id: "test",
         type: "user",
-        uri: "spotify:user:hayspat"
+        uri: "spotify:user:test"
       },
       is_local: false,
       primary_color: null,
@@ -1975,12 +1975,12 @@ export const mockedTracksData = {
       added_at: "2015-10-26T11:55:42Z",
       added_by: {
         external_urls: {
-          spotify: "https://open.spotify.com/user/hayspat"
+          spotify: "https://open.spotify.com/user/test"
         },
-        href: "https://api.spotify.com/v1/users/hayspat",
-        id: "hayspat",
+        href: "https://api.spotify.com/v1/users/test",
+        id: "test",
         type: "user",
-        uri: "spotify:user:hayspat"
+        uri: "spotify:user:test"
       },
       is_local: false,
       primary_color: null,
@@ -2236,12 +2236,12 @@ export const mockedTracksData = {
       added_at: "2015-10-26T11:56:28Z",
       added_by: {
         external_urls: {
-          spotify: "https://open.spotify.com/user/hayspat"
+          spotify: "https://open.spotify.com/user/test"
         },
-        href: "https://api.spotify.com/v1/users/hayspat",
-        id: "hayspat",
+        href: "https://api.spotify.com/v1/users/test",
+        id: "test",
         type: "user",
-        uri: "spotify:user:hayspat"
+        uri: "spotify:user:test"
       },
       is_local: false,
       primary_color: null,

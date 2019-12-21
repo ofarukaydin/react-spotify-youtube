@@ -1,5 +1,5 @@
 export const mockedPlaylistsData = {
-  href: "https://api.spotify.com/v1/users/hayspat/playlists?offset=0&limit=20",
+  href: "https://api.spotify.com/v1/users/test/playlists?offset=0&limit=20",
   items: [
     {
       collaborative: false,
@@ -129,14 +129,14 @@ export const mockedPlaylistsData = {
       images: [],
       name: "Yeni Çalma Listesi",
       owner: {
-        display_name: "hayspat",
+        display_name: "test",
         external_urls: {
-          spotify: "https://open.spotify.com/user/hayspat"
+          spotify: "https://open.spotify.com/user/test"
         },
-        href: "https://api.spotify.com/v1/users/hayspat",
-        id: "hayspat",
+        href: "https://api.spotify.com/v1/users/test",
+        id: "test",
         type: "user",
-        uri: "spotify:user:hayspat"
+        uri: "spotify:user:test"
       },
       primary_color: null,
       public: true,
@@ -207,14 +207,14 @@ export const mockedPlaylistsData = {
       ],
       name: "Perfect 10 – Unknown Brain",
       owner: {
-        display_name: "hayspat",
+        display_name: "test",
         external_urls: {
-          spotify: "https://open.spotify.com/user/hayspat"
+          spotify: "https://open.spotify.com/user/test"
         },
-        href: "https://api.spotify.com/v1/users/hayspat",
-        id: "hayspat",
+        href: "https://api.spotify.com/v1/users/test",
+        id: "test",
         type: "user",
-        uri: "spotify:user:hayspat"
+        uri: "spotify:user:test"
       },
       primary_color: null,
       public: true,
@@ -427,14 +427,14 @@ export const mockedPlaylistsData = {
       ],
       name: "Discover Weekly Archive",
       owner: {
-        display_name: "hayspat",
+        display_name: "test",
         external_urls: {
-          spotify: "https://open.spotify.com/user/hayspat"
+          spotify: "https://open.spotify.com/user/test"
         },
-        href: "https://api.spotify.com/v1/users/hayspat",
-        id: "hayspat",
+        href: "https://api.spotify.com/v1/users/test",
+        id: "test",
         type: "user",
-        uri: "spotify:user:hayspat"
+        uri: "spotify:user:test"
       },
       primary_color: null,
       public: false,
@@ -518,14 +518,14 @@ export const mockedPlaylistsData = {
       ],
       name: "Koro",
       owner: {
-        display_name: "hayspat",
+        display_name: "test",
         external_urls: {
-          spotify: "https://open.spotify.com/user/hayspat"
+          spotify: "https://open.spotify.com/user/test"
         },
-        href: "https://api.spotify.com/v1/users/hayspat",
-        id: "hayspat",
+        href: "https://api.spotify.com/v1/users/test",
+        id: "test",
         type: "user",
-        uri: "spotify:user:hayspat"
+        uri: "spotify:user:test"
       },
       primary_color: null,
       public: true,
@@ -608,14 +608,14 @@ export const mockedPlaylistsData = {
       ],
       name: "Focus",
       owner: {
-        display_name: "hayspat",
+        display_name: "test",
         external_urls: {
-          spotify: "https://open.spotify.com/user/hayspat"
+          spotify: "https://open.spotify.com/user/test"
         },
-        href: "https://api.spotify.com/v1/users/hayspat",
-        id: "hayspat",
+        href: "https://api.spotify.com/v1/users/test",
+        id: "test",
         type: "user",
-        uri: "spotify:user:hayspat"
+        uri: "spotify:user:test"
       },
       primary_color: null,
       public: true,
@@ -659,14 +659,14 @@ export const mockedPlaylistsData = {
       ],
       name: "Acoustic",
       owner: {
-        display_name: "hayspat",
+        display_name: "test",
         external_urls: {
-          spotify: "https://open.spotify.com/user/hayspat"
+          spotify: "https://open.spotify.com/user/test"
         },
-        href: "https://api.spotify.com/v1/users/hayspat",
-        id: "hayspat",
+        href: "https://api.spotify.com/v1/users/test",
+        id: "test",
         type: "user",
-        uri: "spotify:user:hayspat"
+        uri: "spotify:user:test"
       },
       primary_color: null,
       public: true,
@@ -710,14 +710,14 @@ export const mockedPlaylistsData = {
       ],
       name: "Hit",
       owner: {
-        display_name: "hayspat",
+        display_name: "test",
         external_urls: {
-          spotify: "https://open.spotify.com/user/hayspat"
+          spotify: "https://open.spotify.com/user/test"
         },
-        href: "https://api.spotify.com/v1/users/hayspat",
-        id: "hayspat",
+        href: "https://api.spotify.com/v1/users/test",
+        id: "test",
         type: "user",
-        uri: "spotify:user:hayspat"
+        uri: "spotify:user:test"
       },
       primary_color: null,
       public: true,
@@ -761,14 +761,14 @@ export const mockedPlaylistsData = {
       ],
       name: "Comeback",
       owner: {
-        display_name: "hayspat",
+        display_name: "test",
         external_urls: {
-          spotify: "https://open.spotify.com/user/hayspat"
+          spotify: "https://open.spotify.com/user/test"
         },
-        href: "https://api.spotify.com/v1/users/hayspat",
-        id: "hayspat",
+        href: "https://api.spotify.com/v1/users/test",
+        id: "test",
         type: "user",
-        uri: "spotify:user:hayspat"
+        uri: "spotify:user:test"
       },
       primary_color: null,
       public: true,
@@ -812,14 +812,14 @@ export const mockedPlaylistsData = {
       ],
       name: "Mix",
       owner: {
-        display_name: "hayspat",
+        display_name: "test",
         external_urls: {
-          spotify: "https://open.spotify.com/user/hayspat"
+          spotify: "https://open.spotify.com/user/test"
         },
-        href: "https://api.spotify.com/v1/users/hayspat",
-        id: "hayspat",
+        href: "https://api.spotify.com/v1/users/test",
+        id: "test",
         type: "user",
-        uri: "spotify:user:hayspat"
+        uri: "spotify:user:test"
       },
       primary_color: null,
       public: true,
@@ -863,14 +863,14 @@ export const mockedPlaylistsData = {
       ],
       name: "Radyo'dan Beğenilenler",
       owner: {
-        display_name: "hayspat",
+        display_name: "test",
         external_urls: {
-          spotify: "https://open.spotify.com/user/hayspat"
+          spotify: "https://open.spotify.com/user/test"
         },
-        href: "https://api.spotify.com/v1/users/hayspat",
-        id: "hayspat",
+        href: "https://api.spotify.com/v1/users/test",
+        id: "test",
         type: "user",
-        uri: "spotify:user:hayspat"
+        uri: "spotify:user:test"
       },
       primary_color: null,
       public: true,
