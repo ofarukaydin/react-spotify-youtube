@@ -39,9 +39,10 @@ const Spotify = {
       window.history.pushState("Access Token", "", "/");
       return spotifyAccesToken;
     } else {
-      window.location.href = `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${encodeURIComponent(
+      const url = `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${encodeURIComponent(
         scopes
       )}&response_type=token`;
+      window.location.assign(url);
       return "";
     }
   },

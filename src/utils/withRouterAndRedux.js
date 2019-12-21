@@ -5,6 +5,7 @@ import { Router } from "react-router-dom";
 import { render } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { store as reduxStore } from "../store/store";
+import sinon from "sinon";
 
 export function renderWithRouterAndRedux(
   ui,
@@ -13,6 +14,8 @@ export function renderWithRouterAndRedux(
     history = createMemoryHistory({ initialEntries: [route] })
   } = {}
 ) {
+  sinon.stub(window.location, "assign");
+  sinon.stub(window.location, "replace");
   const Wrapper = ({ children }) => (
     <Provider store={reduxStore}>
       <Router history={history}>{children}</Router>
