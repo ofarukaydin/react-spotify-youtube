@@ -123,7 +123,7 @@ export const getUrl = (
   dispatch(getUrlStart());
   let backendUrl = process.env.REACT_APP_SPOTIFY_BACKEND_URL;
   axios
-    .get(backendUrl + "/search?q=" + artists + " " + title)
+    .get(backendUrl + "/api/search?q=" + artists + " " + title)
     .then((res: AxiosResponse) => {
       const url = res.data.url;
       dispatch(getUrlSuccess());

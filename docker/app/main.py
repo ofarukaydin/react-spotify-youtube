@@ -17,12 +17,7 @@ app.add_middleware(
 )
 
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
-
-
-@app.get("/search")
+@app.get("/api/search")
 def read_item(q: str = None):
     textToSearch = q
     query = urllib.parse.quote(textToSearch)
