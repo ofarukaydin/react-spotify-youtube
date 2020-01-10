@@ -1,4 +1,4 @@
-[Live Demo](http://www.farukaydin.org)
+[Live Demo](http://tubify.farukaydin.org)
 
 [ss]: https://github.com/hayspat/react-spotify-youtube/raw/master/Screenshot%20from%202019-12-09%2017-16-33.png "Logo Title Text 2" 
 ![alt text][ss]
