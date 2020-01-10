@@ -4,8 +4,15 @@ body {
 }
 
 .playlist-grid-container {
+  background-image: linear-gradient(to bottom, var(--color), #121212 40%);
+  background-repeat: no-repeat;
+  background-color: #121212;
+  background-size: cover;
+  background-attachment: fixed;
+  transition: all 1s ease-in-out;
   display: grid;
   height: 100%;
+  min-height: 40vh;
   grid-gap: 3px;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: auto auto;
@@ -14,14 +21,13 @@ body {
 .playlist-left-container {
   grid-column: 1 / 6;
   position: fixed;
-  margin: 100px 0 0 100px;
+  padding: 100px 0 0 100px;
 }
 
 .playlist-right-container {
   grid-column: 6 / 13;
-    margin: 100px 0 0 0;
+  padding: 100px 0 0 0;
 }
-
 
 .playlist-owner {
   margin: 0;
@@ -81,15 +87,14 @@ body {
 }
 
 a {
-  color: #A0A0A0
+  color: #a0a0a0;
 }
-
 
 @media (max-width: 1170px) {
   .playlist-left-container {
     grid-column: 1 / 12;
     position: relative;
-    margin: 50px auto auto 50px
+    padding: 50px auto auto 50px;
   }
   .playlist-right-container {
     grid-column: 1 / 12;

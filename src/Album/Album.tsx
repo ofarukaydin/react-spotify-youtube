@@ -5,6 +5,8 @@ import Track from "../Tracks/Track";
 import GridContainer from "../GridContainer/GridContainer";
 import GridLeft from "../GridContainer/GridLeft";
 import GridRight from "../GridContainer/GridRight";
+import Vibrant from "node-vibrant";
+import { Palette } from "node-vibrant/lib/color";
 
 type AlbumState = {
   image: string;
@@ -13,6 +15,7 @@ type AlbumState = {
   name: string;
   releaseDate: string;
   totalTracks: number;
+  primaryColor: Palette;
 };
 
 type AlbumTracksState = {
@@ -29,18 +32,21 @@ const Album = () => {
   const [getAlbum, SetAlbum] = useState<AlbumState>();
   const [getAlbumTracks, setAlbumTracks] = useState<AlbumTracksState[]>([]);
   const params = useParams<{ albumId: string }>();
+
   useEffect(() => {
     (async () => {
       let album = await Spotify.getAlbums(params.albumId);
       const iconList = album.images.map(icon => icon.url);
       const artistsList = album.artists.map(artist => artist.name);
+      const primaryColor = await Vibrant.from(iconList[0]).getPalette();
       SetAlbum({
         image: iconList[0],
         artists: artistsList.join(", "),
         id: album.id,
         name: album.name,
         releaseDate: album.release_date.slice(0, 4),
-        totalTracks: album.total_tracks
+        totalTracks: album.total_tracks,
+        primaryColor
       });
       const tracksList = album.tracks.items.map(trackElement => {
         const artistList = trackElement.artists.map(artistElement => {
@@ -75,7 +81,7 @@ const Album = () => {
   }
 
   return (
-    <GridContainer>
+    <GridContainer palette={getAlbum?.primaryColor}>
       <GridLeft
         name={getAlbum ? getAlbum.name : undefined}
         owner={getAlbum ? getAlbum.artists : undefined}

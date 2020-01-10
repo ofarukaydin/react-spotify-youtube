@@ -6,6 +6,8 @@ import "./Tracks.css";
 import GridContainer from "../GridContainer/GridContainer";
 import GridLeft from "../GridContainer/GridLeft";
 import GridRight from "../GridContainer/GridRight";
+import Vibrant from "node-vibrant";
+import { Palette } from "node-vibrant/lib/color";
 
 type PlaylistDetailsState = {
   images: string;
@@ -14,6 +16,7 @@ type PlaylistDetailsState = {
   owner: string;
   ownerId: string;
   description: string;
+  primaryColor: Palette;
 };
 
 type PlaylistTracksState = {
@@ -42,13 +45,18 @@ const Tracks = () => {
     (async () => {
       let playlist = await Spotify.getPlaylistDetails(params.playlistId);
       const iconList = playlist.images.map(icon => icon.url);
+      const primaryColor = iconList[0]
+        ? await Vibrant.from(iconList[0]).getPalette()
+        : {};
+      console.log(primaryColor);
       setPlaylistDetails({
         images: iconList[0],
         id: playlist.id,
         name: playlist.name,
         owner: playlist.owner.display_name,
         ownerId: playlist.owner.id,
-        description: playlist.description
+        description: playlist.description,
+        primaryColor
       });
       let tracks = await Spotify.getTracks(params.playlistId);
       if (tracks) {
@@ -87,7 +95,7 @@ const Tracks = () => {
   ));
 
   return (
-    <GridContainer>
+    <GridContainer palette={getPlaylistDetails?.primaryColor}>
       <GridLeft
         name={getPlaylistDetails ? getPlaylistDetails.name : undefined}
         owner={getPlaylistDetails ? getPlaylistDetails.owner : undefined}

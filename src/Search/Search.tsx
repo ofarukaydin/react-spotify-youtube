@@ -119,7 +119,7 @@ const Search = () => {
   ));
 
   return (
-    <>
+    <div style={{ paddingLeft: "20px" }}>
       <div className="box">
         <div className="container-1">
           <input
@@ -170,7 +170,7 @@ const Search = () => {
       ) : null}
 
       {state.tracks ? tracksList : null}
-    </>
+    </div>
   );
 };
 
