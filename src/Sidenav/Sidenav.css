@@ -8,7 +8,7 @@
   overflow-x: hidden;
   padding-top: 20px;
   margin-bottom: 90px;
-  color: #B3B3B3
+  color: #b3b3b3;
 }
 
 .Sidenav a {
@@ -21,17 +21,12 @@
   color: white;
 }
 
-
-
-
-
 .navGroup {
   display: flex;
   justify-content: space-between;
 }
 
 .navGroup ul {
-
   padding: 0px;
   list-style-type: none;
   line-height: 24px;
@@ -44,8 +39,6 @@
   text-align: center;
   display: flex;
   padding: 10px;
-  
-
 }
 
 .navGroup li a:hover {
@@ -56,8 +49,6 @@
   font-size: 24px;
   padding-left: 10px;
   padding-right: 10px;
-  
-
 }
 .sideActive {
   color: white;
@@ -79,25 +70,12 @@
   background-color: #1ed760;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
 .playlistNavbar {
   display: flex;
   justify-content: space-between;
 }
 
 .playlistNavbar ul {
-
   padding: 0px;
   list-style-type: none;
   line-height: 24px;
@@ -109,9 +87,7 @@
   transition: color 0.2s;
   text-align: center;
   display: flex;
-  padding-left:20px;
-  
-
+  padding-left: 20px;
 }
 
 .playlistNavbar li a:hover {
@@ -122,8 +98,6 @@
   font-size: 24px;
   padding-left: 10px;
   padding-right: 10px;
-  
-
 }
 .playlistActive {
   color: white;
@@ -144,5 +118,3 @@
   width: 4px;
   background-color: #1ed760;
 }
-
-
