@@ -27,9 +27,6 @@ def read_item(q: str = None):
     response = urllib.request.urlopen(url)
     html = response.read()
     soup = bs4.BeautifulSoup(html, 'html.parser')
-    print(soup)
-    vid = soup.findAll(attrs={'class': 'yt-uix-tile-link'})
-
     all_vid_id = re.findall(r'/watch\?v=(.{11})', str(soup))
     if len(all_vid_id) >= 1:
         for vid_id in all_vid_id:
